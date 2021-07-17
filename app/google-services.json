@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "380296935879",
+    "project_id": "makanikapp-f4e0f",
+    "storage_bucket": "makanikapp-f4e0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380296935879:android:5542863cd75fe3a1ddc1e2",
+        "android_client_info": {
+          "package_name": "com.joan.makanikapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380296935879-iqq4m9ae9uamjn9ok2avae8sde5pn4qt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClqctW-2TZkXXlCr839q4TJk8xKdO1rmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380296935879-iqq4m9ae9uamjn9ok2avae8sde5pn4qt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
