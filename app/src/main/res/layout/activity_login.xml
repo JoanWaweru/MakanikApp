@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@+id/text_intro"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/intro"
         android:textStyle="bold"
@@ -22,7 +22,9 @@
         android:layout_marginTop="6dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,21 +42,23 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Already \nhave an \nAccount?" />
+                    android:text="We got \nyour \nBack?"
+                    android:layout_marginLeft="60dp"/>
 
                 <ImageView
-                    android:layout_width="180dp"
-                    android:layout_height="200dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="30dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginRight="50dp"
                     android:src="@drawable/mechanic_login" />
 
             </RelativeLayout>
@@ -65,7 +69,7 @@
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <EditText
-                    android:id="@+id/editTextEmail"
+                    android:id="@+id/editloginTextEmail"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_email_hint"
                     android:inputType="textEmailAddress"
@@ -78,7 +82,7 @@
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <EditText
-                    android:id="@+id/editTextPassword"
+                    android:id="@+id/editTextloginPassword"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_password_hint"
                     android:inputType="textPassword"
@@ -104,11 +108,26 @@
 <!--                app:spinning_bar_padding="6dp"-->
 <!--                app:spinning_bar_width="4dp" />-->
 
+            <Button
+
+                android:id="@+id/button_login"
+                android:text="Log In"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                style="@style/parent"
+                android:background="@color/whiteTextColor"
+                android:textColor="@color/themeColor"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:onClick="loginClick">
+
+            </Button>
             <TextView
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:onClick="onLoginClick"
-                android:text="New user? Register Now"
+                android:text="@string/new_user_register_now"
                 android:textAlignment="center"
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"

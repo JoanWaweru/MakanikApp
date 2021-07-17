@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/text_intro"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/intro"
         android:textStyle="bold"
@@ -21,7 +21,9 @@
         android:layout_marginTop="6dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,15 +45,18 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Here’s\nyour first\nstep with \nus! "
-                    android:textColor="@color/whiteTextColor" />
+                    android:text="Here is\nyour first\nstep with \nus! "
+                    android:textColor="@color/whiteTextColor"
+                    android:layout_marginLeft="60dp"/>
 
                 <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/mechanic_register" />
+                    android:src="@drawable/mechanic_register"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"/>
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
@@ -68,17 +73,31 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputName"
+                        android:id="@+id/textInputFirstName"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
-                            android:id="@+id/editTextName"
+                            android:id="@+id/editTextFirstName"
                             style="@style/modifiedEditText"
-                            android:hint="Name"
+                            android:hint="@string/first_name"
                             android:inputType="textPersonName"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLastName"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/editTextLastName"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/last_name"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEmail"
@@ -101,7 +120,7 @@
                         <EditText
                             android:id="@+id/editTextMobile"
                             style="@style/modifiedEditText"
-                            android:hint="Mobile Number"
+                            android:hint="@string/mobile_number"
                             android:inputType="phone"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -130,11 +149,28 @@
 <!--                        app:spinning_bar_padding="6dp"-->
 <!--                        app:spinning_bar_width="4dp" />-->
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button_signup"
+                        android:text="@string/sign_up"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:textColor="@color/themeColor"
+                        android:textSize="25sp"
+                        android:background="@color/whiteTextColor"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:onClick="signUpUser"
+                        >
+
+                    </Button>
+
                     <TextView
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:onClick="onLoginClick"
-                        android:text="Already have an account?"
+                        android:text="@string/already_have_an_account"
                         android:textAlignment="center"
                         android:textColor="@color/themeColor"
                         android:textSize="17sp"
@@ -163,7 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="Use other Methods"
+                    android:text="@string/use_other_methods"
                     android:textAlignment="center"
                     android:textColor="@color/whiteTextColor"
                     android:textSize="12sp"

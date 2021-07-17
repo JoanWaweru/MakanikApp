@@ -2,5 +2,15 @@
     <string name="app_name">MakanikApp</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
-    <string name="intro">MakanikApp</string>
+    <string name="intro"><u>MakanikApp</u></string>
+    <string name="name">Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="use_other_methods">Use other Methods</string>
+    <string name="new_user_register_now">New user? Register Now</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="log_out">Log Out</string>
 </resources>
