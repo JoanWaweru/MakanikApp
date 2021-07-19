@@ -39,7 +39,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
@@ -47,7 +49,7 @@
                     android:layout_centerVertical="true"
                     android:text="Here is\nyour first\nstep with \nus! "
                     android:textColor="@color/whiteTextColor"
-                    android:layout_marginLeft="60dp"/>
+                    android:layout_marginLeft="80dp"/>
 
                 <ImageView
                     android:layout_width="120dp"
@@ -55,7 +57,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/mechanic_register"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginRight="70dp"
                     android:layout_marginTop="10dp"/>
             </RelativeLayout>
 
@@ -181,56 +183,56 @@
             </androidx.cardview.widget.CardView>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:weightSum="12">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:gravity="center"-->
+<!--                android:weightSum="12">-->
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/whiteTextColor" />
+<!--                <View-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:background="@color/whiteTextColor" />-->
 
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="@string/use_other_methods"
-                    android:textAlignment="center"
-                    android:textColor="@color/whiteTextColor"
-                    android:textSize="12sp"
-                    android:gravity="center_horizontal" />
+<!--                <TextView-->
+<!--                    style="@style/viewParent.headerText.NoMode"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="6"-->
+<!--                    android:text="@string/use_other_methods"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/whiteTextColor"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:gravity="center_horizontal" />-->
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/whiteTextColor" />
+<!--                <View-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:background="@color/whiteTextColor" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
-                android:gravity="center">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:gravity="center">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/ic_facebook" />-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_google_plus" />
-            </LinearLayout>
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:src="@drawable/ic_google_plus" />-->
+<!--            </LinearLayout>-->
 
 
         </LinearLayout>

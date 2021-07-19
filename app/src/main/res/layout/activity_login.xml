@@ -43,7 +43,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="35dp">
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
@@ -92,10 +92,12 @@
             <TextView
                 style="@style/viewParent"
                 android:layout_gravity="end"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/button_forgotpassword"
                 android:text="Forgot Password?"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/newsMoreTextSize" />
+                android:textSize="@dimen/newsMoreTextSize"
+                android:onClick="forgotpassword"/>
 
 <!--            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
 <!--                android:id="@+id/cirLoginButton"-->
@@ -118,14 +120,14 @@
                 style="@style/parent"
                 android:background="@color/whiteTextColor"
                 android:textColor="@color/themeColor"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:onClick="loginClick">
 
             </Button>
             <TextView
                 style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_marginTop="30dp"
                 android:onClick="onLoginClick"
                 android:text="@string/new_user_register_now"
                 android:textAlignment="center"
@@ -135,54 +137,54 @@
                 android:gravity="center_horizontal" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:weightSum="12">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:gravity="center"-->
+<!--                android:weightSum="12">-->
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
+<!--                <View-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:background="@color/colorPrimaryDark" />-->
 
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Use other Methods"
-                    android:textAlignment="center"
-                    android:textSize="12sp"
-                    android:gravity="center_horizontal" />
+<!--                <TextView-->
+<!--                    style="@style/viewParent.headerText.NoMode"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="6"-->
+<!--                    android:text="Use other Methods"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:gravity="center_horizontal" />-->
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimaryDark" />
+<!--                <View-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:background="@color/colorPrimaryDark" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:gravity="center">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/ic_facebook" />-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_google_plus" />
-            </LinearLayout>
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:src="@drawable/ic_google_plus" />-->
+<!--            </LinearLayout>-->
 
         </LinearLayout>
     </ScrollView>

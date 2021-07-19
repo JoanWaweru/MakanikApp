@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/register_bk_color"
+    android:focusableInTouchMode="true"
     tools:context=".ViewProfileActivity">
     <TextView
         android:id="@+id/text_intro"
@@ -12,9 +15,23 @@
         android:text="@string/intro"
         android:textStyle="bold"
         android:textSize="35sp"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/whiteTextColor"
         android:layout_marginTop="6dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="italic"
+        android:textSize="22sp"
+        android:textColor="@color/whiteTextColor"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/text_intro"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textAlignment="center"
@@ -28,16 +45,17 @@
         android:text="@string/first_name"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/text_intro"
+        app:layout_constraintTop_toBottomOf="@id/text_welcome"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <EditText
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/profile_displayfirstname"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -48,7 +66,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </EditText>
+    </TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -61,12 +79,13 @@
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <EditText
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/profile_displaylastname"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -77,7 +96,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </EditText>
+    </TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -90,12 +109,13 @@
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <EditText
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/profile_displayemail"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -106,7 +126,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </EditText>
+    </TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -119,12 +139,13 @@
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <EditText
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/profile_displayphonenumber"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -135,7 +156,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </EditText>
+    </TextView>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -150,7 +171,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_displayphonenumber"
         android:layout_marginTop="30dp"
-        android:onClick="logOut">
+        android:onClick="logOut"
+        android:layout_marginHorizontal="30dp">
 
     </Button>
 
