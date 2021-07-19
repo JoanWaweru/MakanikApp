@@ -3,13 +3,20 @@ package com.joan.makanikapp;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,12 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 //import coding.insight.cleanuiloginregister.R;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
-        TextView email,password;
+        TextView email,password,forgotpassword;
         Button login;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
+    private FirebaseAuth mAuth;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -39,6 +47,9 @@ public class LoginActivity extends AppCompatActivity {
             email = findViewById(R.id.editloginTextEmail);
             password = findViewById(R.id.editTextloginPassword);
             login = findViewById(R.id.button_login);
+            forgotpassword = findViewById(R.id.button_forgotpassword);
+
+
 
         }
 
@@ -47,103 +58,138 @@ public class LoginActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
 
         }
-        private Boolean vallidateemail(){
-            String val =email.getText().toString();
-            String noWhiteSpace = "A\\w{4,20}\\z";
 
-            if(val.isEmpty()){
-                email.setError("Field Cannot be Empty");
-                return false;
-            }
-
-            else {
-                email.setError(null);
-                email.setEnabled(false);
-                return true;
-
-            }
-
-        }
-        private Boolean validatepassword(){
-            String val = password.getText().toString();
-
-            if(val.isEmpty()){
-                password.setError("Field Cannot be Empty");
-                return false;
-
-            }
-            else{
-                password.setError(null);
-
-                return true;
-            }
-
-        }
 
          public void loginClick(View view) {
-            if(!vallidateemail()||!validatepassword()){
-
-
-            }
-            else{
-                isUser();
+            switch (view.getId()){
+                case R.id.button_login:
+                    rootnode = FirebaseDatabase.getInstance();
+                    reference = rootnode.getReference("user");
+                    mAuth = FirebaseAuth.getInstance();
+                    userLogIn();
+                    break;
             }
 
     }
 
-    private void isUser() {
-            String userEnteredEmail = email.getText().toString().trim();
-            String userEnteredPassword = password.getText().toString().trim();
+    private void userLogIn() {
+        String userEnteredEmail = email.getText().toString().trim();
+        String userEnteredPassword = password.getText().toString().trim();
 
-        rootnode = FirebaseDatabase.getInstance();
-        reference = rootnode.getReference("user");
+        if(userEnteredEmail.isEmpty()){
+            email.setError("Email is Required");
+            email.requestFocus();
+            return;
+            
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(userEnteredEmail).matches()){
+            email.setError("Please Enter a Valid Email");
+            email.requestFocus();
+            return;
+        }
+        if(userEnteredPassword.isEmpty()){
+            email.setError("Password is Required");
+            email.requestFocus();
+            return;
+
+        }
 
 
-        Query checkUser = reference.orderByChild("email").equalTo(userEnteredEmail);
-        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+        mAuth.signInWithEmailAndPassword(userEnteredEmail,userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    //check if user is email verified
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                if(snapshot.exists()){
-                    email.setError(null);
+                    if (user.isEmailVerified()){
+                        //redirect to ViewProfile Activity
 
-                    String passwordFromDB = snapshot.child(userEnteredEmail).child("password").getValue(String.class);
-
-                    if(passwordFromDB.equals(userEnteredPassword)){
-                        String firstnameFromDB = snapshot.child(userEnteredEmail).child("fname").getValue(String.class);
-                        String lastnameFromDB = snapshot.child(userEnteredEmail).child("lname").getValue(String.class);
-                        String emailFromDB = snapshot.child(userEnteredEmail).child("email").getValue(String.class);
-                        String phonenumberFromDB = snapshot.child(userEnteredEmail).child("phoneno").getValue(String.class);
-
-                        Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
-                        intent.putExtra("fname",firstnameFromDB);
-                        intent.putExtra("lname",lastnameFromDB);
-                        intent.putExtra("email",emailFromDB);
-                        intent.putExtra("phoneno",phonenumberFromDB);
-                        intent.putExtra("password",passwordFromDB);
-
-                        startActivity(intent);
+                        startActivity(new Intent(LoginActivity.this,ViewProfileActivity.class));
 
                     }
                     else {
-                        password.setError("Wrong Password");
-                        password.requestFocus();
+                        user.sendEmailVerification();
+                        Toast.makeText(LoginActivity.this,"Check Your Email To Verify Your Account",Toast.LENGTH_LONG).show();
+
+
 
                     }
 
+
                 }
                 else {
-                    email.setError("Email not Recognized");
-                    email.requestFocus();
+                    Toast.makeText(LoginActivity.this,"Log In Failed. Please Check Your Credentials",Toast.LENGTH_LONG).show();
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
     }
+
+    public void forgotpassword(View view) {
+
+        switch (view.getId()){
+            case R.id.button_forgotpassword:
+                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
+                break;
+        }
+
+    }
+
+//    private void isUser() {
+//            String userEnteredEmail = email.getText().toString().trim();
+//            String userEnteredPassword = password.getText().toString().trim();
+//
+//        rootnode = FirebaseDatabase.getInstance();
+//        reference = rootnode.getReference("user");
+//
+//
+//        Query checkUser = reference.orderByChild("email").equalTo(userEnteredEmail);
+//        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                if(snapshot.exists()){
+//                    email.setError(null);
+//
+//                    String passwordFromDB = snapshot.child(userEnteredEmail).child("password").getValue(String.class);
+//
+//                    if(passwordFromDB.equals(userEnteredPassword)){
+//                        String firstnameFromDB = snapshot.child(userEnteredEmail).child("fname").getValue(String.class);
+//                        String lastnameFromDB = snapshot.child(userEnteredEmail).child("lname").getValue(String.class);
+//                        String emailFromDB = snapshot.child(userEnteredEmail).child("email").getValue(String.class);
+//                        String phonenumberFromDB = snapshot.child(userEnteredEmail).child("phoneno").getValue(String.class);
+//
+//                        Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
+//                        intent.putExtra("fname",firstnameFromDB);
+//                        intent.putExtra("lname",lastnameFromDB);
+//                        intent.putExtra("email",emailFromDB);
+//                        intent.putExtra("phoneno",phonenumberFromDB);
+//                        intent.putExtra("password",passwordFromDB);
+//
+//                        startActivity(intent);
+//
+//                    }
+//                    else {
+//                        password.setError("Wrong Password");
+//                        password.requestFocus();
+//
+//                    }
+//
+//                }
+//                else {
+//                    email.setError("Email not Recognized");
+//                    email.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//    }
 }
 
