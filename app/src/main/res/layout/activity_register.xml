@@ -49,7 +49,7 @@
                     android:layout_centerVertical="true"
                     android:text="Here is\nyour first\nstep with \nus! "
                     android:textColor="@color/whiteTextColor"
-                    android:layout_marginLeft="80dp"/>
+                    android:layout_marginLeft="60dp"/>
 
                 <ImageView
                     android:layout_width="120dp"
