@@ -13,4 +13,6 @@
     <string name="last_name">Last Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="log_out">Log Out</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="enter_your_email_address">Enter Your Email Address</string>
 </resources>
