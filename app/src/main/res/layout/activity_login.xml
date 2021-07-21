@@ -50,7 +50,7 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="We got \nyour \nBack?"
+                    android:text="We got \nyour \nBack😉"
                     android:layout_marginLeft="60dp"/>
 
                 <ImageView
