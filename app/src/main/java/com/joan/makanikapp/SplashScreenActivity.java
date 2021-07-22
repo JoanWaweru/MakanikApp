@@ -18,7 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     Animation topAnim,bottomAnim;
     ImageView splashImage;
-    TextView splashDescription;
+//    TextView splashDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +30,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
 
         splashImage = findViewById(R.id.splashImage);
-        splashDescription = findViewById(R.id.splashIntro);
+//        splashDescription = findViewById(R.id.splashIntro);
 
         splashImage.setAnimation(topAnim);
-        splashDescription.setAnimation(bottomAnim);
+//        splashDescription.setAnimation(bottomAnim);
 
         new Handler().postDelayed(new Runnable() {
             @Override

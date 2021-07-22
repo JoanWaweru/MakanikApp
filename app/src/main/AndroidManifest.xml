@@ -17,27 +17,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainScreenActivity">
-        <intent-filter>
-<!--        <action android:name="android.intent.action.MAIN" />-->
-        </intent-filter></activity>
+<!--        <intent-filter>-->
+<!--&lt;!&ndash;        <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
+<!--        </intent-filter>-->
+        </activity>
+
         <activity android:name=".DashboardActivity" />
+
         <activity android:name=".ForgotPasswordActivity" />
+
         <activity android:name=".ViewProfileActivity" />
+
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            </intent-filter>
+<!--&lt;!&ndash;                <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--            </intent-filter>-->
         </activity>
+
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
