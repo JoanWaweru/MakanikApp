@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 //import coding.insight.cleanuiloginregister.R;
 
@@ -31,6 +28,7 @@ public class LoginActivity extends AppCompatActivity{
 
         TextView email,password,forgotpassword;
         Button login;
+        CheckBox rememberMe;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
     private FirebaseAuth mAuth;
@@ -48,7 +46,7 @@ public class LoginActivity extends AppCompatActivity{
             password = findViewById(R.id.editTextloginPassword);
             login = findViewById(R.id.button_login);
             forgotpassword = findViewById(R.id.button_forgotpassword);
-
+            rememberMe = findViewById(R.id.rememberMe);
 
 
         }
@@ -91,6 +89,9 @@ public class LoginActivity extends AppCompatActivity{
             email.setError("Password is Required");
             email.requestFocus();
             return;
+        }
+
+        if(rememberMe.isChecked()){
 
         }
 
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity{
                     if (user.isEmailVerified()){
                         //redirect to ViewProfile Activity
 
-                        startActivity(new Intent(LoginActivity.this,ViewProfileActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainScreenActivity.class));
 
                     }
                     else {

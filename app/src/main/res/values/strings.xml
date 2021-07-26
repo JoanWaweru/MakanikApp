@@ -15,4 +15,22 @@
     <string name="log_out">Log Out</string>
     <string name="reset_password">Reset Password</string>
     <string name="enter_your_email_address">Enter Your Email Address</string>
+    <string name="welcome_name">Welcome "Name"</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="my_dashboard">My Dashboard</string>
+    <string name="welcome_user">Welcome, User!</string>
+    <string name="sign_in_as_mechanic">Sign As Mechanic</string>
+    <string name="view_profile">View Profile</string>
+    <string name="request_mechanic">Call Mechanic</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -25,7 +25,6 @@
         app:layout_constraintRight_toRightOf="parent"
         android:textAlignment="center"
         android:gravity="center_horizontal"/>
-<!--        androidndjnjnc/>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -89,6 +88,14 @@
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/rememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember Me"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="15dp"/>
 
             <TextView
                 style="@style/viewParent"
