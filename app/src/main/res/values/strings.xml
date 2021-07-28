@@ -15,4 +15,5 @@
     <string name="log_out">Log Out</string>
     <string name="reset_password">Reset Password</string>
     <string name="enter_your_email_address">Enter Your Email Address</string>
+    <string name="breakdown_details">Breakdown Details</string>
 </resources>
