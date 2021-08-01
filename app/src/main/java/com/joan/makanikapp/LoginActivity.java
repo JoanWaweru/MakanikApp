@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 //import coding.insight.cleanuiloginregister.R;
 
@@ -31,6 +28,7 @@ public class LoginActivity extends AppCompatActivity{
 
         TextView email,password,forgotpassword;
         Button login;
+        CheckBox rememberMe;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
     private FirebaseAuth mAuth;
@@ -48,7 +46,7 @@ public class LoginActivity extends AppCompatActivity{
             password = findViewById(R.id.editTextloginPassword);
             login = findViewById(R.id.button_login);
             forgotpassword = findViewById(R.id.button_forgotpassword);
-
+            rememberMe = findViewById(R.id.rememberMe);
 
 
         }
@@ -91,6 +89,9 @@ public class LoginActivity extends AppCompatActivity{
             email.setError("Password is Required");
             email.requestFocus();
             return;
+        }
+
+        if(rememberMe.isChecked()){
 
         }
 
@@ -105,13 +106,13 @@ public class LoginActivity extends AppCompatActivity{
                     if (user.isEmailVerified()){
                         //redirect to ViewProfile Activity
 
-                        startActivity(new Intent(LoginActivity.this,UserIncidentPageActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainScreenActivity.class));
 
                     }
                     else {
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this,"Check Your Email To Verify Your Account",Toast.LENGTH_LONG).show();
-                        
+
 
 
                     }
@@ -132,14 +133,64 @@ public class LoginActivity extends AppCompatActivity{
         switch (view.getId()){
             case R.id.button_forgotpassword:
                 startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
-
                 break;
         }
 
     }
 
-
-
-
+//    private void isUser() {
+//            String userEnteredEmail = email.getText().toString().trim();
+//            String userEnteredPassword = password.getText().toString().trim();
+//
+//        rootnode = FirebaseDatabase.getInstance();
+//        reference = rootnode.getReference("user");
+//
+//
+//        Query checkUser = reference.orderByChild("email").equalTo(userEnteredEmail);
+//        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                if(snapshot.exists()){
+//                    email.setError(null);
+//
+//                    String passwordFromDB = snapshot.child(userEnteredEmail).child("password").getValue(String.class);
+//
+//                    if(passwordFromDB.equals(userEnteredPassword)){
+//                        String firstnameFromDB = snapshot.child(userEnteredEmail).child("fname").getValue(String.class);
+//                        String lastnameFromDB = snapshot.child(userEnteredEmail).child("lname").getValue(String.class);
+//                        String emailFromDB = snapshot.child(userEnteredEmail).child("email").getValue(String.class);
+//                        String phonenumberFromDB = snapshot.child(userEnteredEmail).child("phoneno").getValue(String.class);
+//
+//                        Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
+//                        intent.putExtra("fname",firstnameFromDB);
+//                        intent.putExtra("lname",lastnameFromDB);
+//                        intent.putExtra("email",emailFromDB);
+//                        intent.putExtra("phoneno",phonenumberFromDB);
+//                        intent.putExtra("password",passwordFromDB);
+//
+//                        startActivity(intent);
+//
+//                    }
+//                    else {
+//                        password.setError("Wrong Password");
+//                        password.requestFocus();
+//
+//                    }
+//
+//                }
+//                else {
+//                    email.setError("Email not Recognized");
+//                    email.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//    }
 }
 
