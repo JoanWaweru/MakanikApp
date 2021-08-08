@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/login_bk_color"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".DashboardFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginTop="-385dp">
+
+        <ImageView
+            android:id="@+id/menu_navigation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorSecondary"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_menu" />
+
+        <TextView
+            android:id="@+id/makanikapp_title"
+            android:layout_width="335dp"
+            android:layout_height="40dp"
+            android:background="@color/colorSecondary"
+            android:text="@string/app_name"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/welcome_name"
+            android:layout_width="335dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/makanikapp_title"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="51dp"
+            android:background="@color/colorSecondary"
+            android:text="@string/welcome_name"
+            android:textSize="30sp" />
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+    </RelativeLayout>
+
+</LinearLayout>
