@@ -53,6 +53,7 @@
             android:padding="16dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/callMechanicCard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -70,11 +71,15 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/callMechanicImage"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_call_mechanic" />
+                        android:src="@drawable/ic_call_mechanic"
+                        android:clickable="true"
+                        android:focusable="true" />
 
                     <TextView
+                        android:id="@+id/callMechanicText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -87,6 +92,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/viewProfileCard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -104,10 +110,14 @@
                     android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/viewProfileImage"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_view_my_profile_icon"/>
+                        android:src="@drawable/ic_view_my_profile_icon"
+                        android:clickable="true"
+                        android:focusable="true" />
                     <TextView
+                        android:id="@+id/viewProfileText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/view_profile"
@@ -128,6 +138,7 @@
             android:weightSum="2">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/signAsMechanicCard"
                 android:layout_width="79dp"
                 android:layout_height="match_parent"
                 android:layout_margin="12dp"
@@ -145,11 +156,15 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/signAsMechanicImage"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_sign_in_as_mechanic_icon" />
+                        android:src="@drawable/ic_sign_in_as_mechanic_icon"
+                        android:clickable="true"
+                        android:focusable="true" />
 
                     <TextView
+                        android:id="@+id/signAsMechanicText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -162,6 +177,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/logoutCard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -179,10 +195,14 @@
                     android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/logoutImage"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_logout_icon"/>
+                        android:src="@drawable/ic_logout_icon"
+                        android:clickable="true"
+                        android:focusable="true" />
                     <TextView
+                        android:id="@+id/logoutText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/logout"
