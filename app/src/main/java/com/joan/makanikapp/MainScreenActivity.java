@@ -91,15 +91,15 @@ public class MainScreenActivity extends AppCompatActivity {
 
     }
     public void logOut(View view) {
-//        switch (view.getId()){
-//            case R.id.logout_textview:
-//                mAuth = FirebaseAuth.getInstance();
-//                mAuth.signOut();
-//                startActivity(new Intent(this,LoginActivity.class));
-//                overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
-//
-//                break;
-//        }
+        switch (view.getId()){
+            case R.id.logout_textview:
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                startActivity(new Intent(this,LoginActivity.class));
+                overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+
+                break;
+        }
 
     }
 }
