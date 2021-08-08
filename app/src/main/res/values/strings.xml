@@ -34,5 +34,8 @@
     <string name="view_profile">View Profile</string>
     <string name="request_mechanic">Call Mechanic</string>
     <string name="logout">Logout</string>
-    <string name="edit_profile">Edit Profile</string>
+    <string name="new_mechanic_register_now">New Mechanic? Register Now</string>
+    <string name="mechanic_registration_number">Mechanic Registration Number</string>
+    <string name="makanikappNavTitle">MakanikApp</string>
+    <string name="makanikap_gmail_com">makanikap@gmail.com</string>
 </resources>
