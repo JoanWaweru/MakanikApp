@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/text_incident_details"
         app:layout_constraintTop_toBottomOf="@id/text_intro"
-        android:text="@string/breakdown_details"
+        android:text="Breakdown Details"
         android:textColor="@color/darkTextColor"
         android:textAlignment="center"
         android:gravity="center"

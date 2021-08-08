@@ -138,59 +138,6 @@ public class LoginActivity extends AppCompatActivity{
 
     }
 
-//    private void isUser() {
-//            String userEnteredEmail = email.getText().toString().trim();
-//            String userEnteredPassword = password.getText().toString().trim();
-//
-//        rootnode = FirebaseDatabase.getInstance();
-//        reference = rootnode.getReference("user");
-//
-//
-//        Query checkUser = reference.orderByChild("email").equalTo(userEnteredEmail);
-//        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                if(snapshot.exists()){
-//                    email.setError(null);
-//
-//                    String passwordFromDB = snapshot.child(userEnteredEmail).child("password").getValue(String.class);
-//
-//                    if(passwordFromDB.equals(userEnteredPassword)){
-//                        String firstnameFromDB = snapshot.child(userEnteredEmail).child("fname").getValue(String.class);
-//                        String lastnameFromDB = snapshot.child(userEnteredEmail).child("lname").getValue(String.class);
-//                        String emailFromDB = snapshot.child(userEnteredEmail).child("email").getValue(String.class);
-//                        String phonenumberFromDB = snapshot.child(userEnteredEmail).child("phoneno").getValue(String.class);
-//
-//                        Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
-//                        intent.putExtra("fname",firstnameFromDB);
-//                        intent.putExtra("lname",lastnameFromDB);
-//                        intent.putExtra("email",emailFromDB);
-//                        intent.putExtra("phoneno",phonenumberFromDB);
-//                        intent.putExtra("password",passwordFromDB);
-//
-//                        startActivity(intent);
-//
-//                    }
-//                    else {
-//                        password.setError("Wrong Password");
-//                        password.requestFocus();
-//
-//                    }
-//
-//                }
-//                else {
-//                    email.setError("Email not Recognized");
-//                    email.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//    }
+
 }
 
