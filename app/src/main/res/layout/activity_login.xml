@@ -43,14 +43,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp">
+                android:layout_marginTop="35dp"
+                android:layout_centerHorizontal="true">
 
-                <TextView
-                    style="@style/viewParent.headerText.NoMode"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:text="We got \nyour \nBack😉"
-                    android:layout_marginLeft="60dp"/>
+<!--                <TextView-->
+<!--                    style="@style/viewParent.headerText.NoMode"-->
+<!--                    android:layout_alignParentLeft="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:text="We got \nyour \nBack😉"-->
+<!--                    android:layout_marginLeft="60dp"/>-->
 
                 <ImageView
                     android:layout_width="120dp"
@@ -58,7 +59,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="30dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="150dp"
+
                     android:src="@drawable/mechanic_login" />
 
             </RelativeLayout>

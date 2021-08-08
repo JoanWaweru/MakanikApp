@@ -34,4 +34,5 @@
     <string name="view_profile">View Profile</string>
     <string name="request_mechanic">Call Mechanic</string>
     <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

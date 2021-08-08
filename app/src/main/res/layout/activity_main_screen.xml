@@ -29,12 +29,19 @@
             android:textColor="@color/whiteTextColor"
             android:textSize="30sp"/>
 
+
         <TextView
+            android:id="@+id/text_welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_user"
+            android:text=""
+            android:textSize="25sp"
             android:textColor="@color/whiteTextColor"
-            android:textSize="25sp"/>
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/text_intro"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+             />
 
     </LinearLayout>
 
@@ -74,13 +81,16 @@
                         android:layout_height="60dp"
                         android:src="@drawable/ic_call_mechanic" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/call_mechanic_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/request_mechanic"
                         android:textColor="#3ACBF3"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:background="@color/whiteTextColor"
+                        android:onClick="call_mechanic"/>
 
                 </LinearLayout>
 
@@ -107,10 +117,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:src="@drawable/ic_view_my_profile_icon"/>
-                    <TextView
+                    <Button
+                        android:id="@+id/view_profile_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/view_profile"
+                        android:background="@color/whiteTextColor"
+                        android:onClick="view_profile"
                         android:gravity="center"
                         android:textColor="#3ACBF3"
                         android:textSize="18sp"/>
@@ -182,13 +195,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:src="@drawable/ic_logout_icon"/>
-                    <TextView
+                    <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/logout_textview"
                         android:text="@string/logout"
+                        android:background="@color/whiteTextColor"
                         android:gravity="center"
                         android:textColor="#3ACBF3"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp"
+                        android:onClick="logOut"
+                        />
 
                 </LinearLayout>
 

@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
-    tools:context=".ViewProfileActivity">
+    tools:context=".EditingUserProfileActivity">
 
 
 
@@ -28,65 +28,7 @@
 
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_firstname"
-        android:text="@string/first_name"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/text_intro"
-        android:textAlignment="center"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/whiteTextColor">
 
-    </TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/profile_displayfirstname"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_firstname"
-        android:textAlignment="center"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="30dp">
-
-    </TextView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_lastname"
-        android:text="@string/last_name"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayfirstname"
-        android:textAlignment="center"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/whiteTextColor">
-
-    </TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/profile_displaylastname"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_lastname"
-        android:textAlignment="center"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="30dp">
-
-    </TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -95,7 +37,7 @@
         android:text="@string/login_email_hint"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_displaylastname"
+        app:layout_constraintTop_toBottomOf="@id/text_intro"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
@@ -103,10 +45,10 @@
         android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/profile_displayemail"
+        android:id="@+id/profile_displayingemail"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/profile_email"
@@ -116,7 +58,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </TextView>
+    </EditText>
 
     <TextView
         android:layout_width="match_parent"
@@ -125,7 +67,7 @@
         android:text="@string/phone_number"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayemail"
+        app:layout_constraintTop_toBottomOf="@id/profile_displayingemail"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
@@ -133,10 +75,10 @@
         android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/profile_displayphonenumber"
+        android:id="@+id/profile_displayingphonenumber"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/profile_phonenumber"
@@ -146,12 +88,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </TextView>
+    </EditText>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editProfile"
-        android:text="@string/edit_profile"
+        android:id="@+id/editingProfile"
+        android:text="Edit Profile"
         android:textColor="@color/themeColor"
         android:textStyle="bold"
         android:textSize="25sp"
@@ -159,10 +101,28 @@
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayphonenumber"
+        app:layout_constraintTop_toBottomOf="@id/profile_displayingphonenumber"
         android:layout_marginTop="30dp"
-        android:onClick="EditProfile"
+        android:onClick="EditingProfile"
         android:layout_marginHorizontal="30dp">
+
+    </Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/back_viewingprofile"
+        android:text="Back"
+        android:textColor="@color/themeColor"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:background="@color/whiteTextColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/profile_displayingphonenumber"
+        app:layout_constraintLeft_toRightOf="@id/editingProfile"
+        android:layout_marginTop="30dp"
+        android:onClick="Back"
+        android:layout_marginLeft="50dp">
 
     </Button>
 
