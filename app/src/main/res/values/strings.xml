@@ -29,7 +29,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="my_dashboard">My Dashboard</string>
-    <string name="welcome_user">Welcome, User!</string>
+    <string name="welcome_user">Welcome!</string>
     <string name="sign_in_as_mechanic">Sign As Mechanic</string>
     <string name="view_profile">View Profile</string>
     <string name="request_mechanic">Call Mechanic</string>

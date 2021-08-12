@@ -3,6 +3,7 @@ package com.joan.makanikapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +45,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.signAsMechanicCard:
-                i = new Intent(this,MechanicRegisterActivity.class);
+                i = new Intent(this,NavigationDrawerActivity.class);
                 startActivity(i);
                 break;
 

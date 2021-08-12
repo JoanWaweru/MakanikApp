@@ -65,7 +65,7 @@
         android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/profile_displayfirstname"
@@ -78,7 +78,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </TextView>
+    </EditText>
 
     <TextView
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
         android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/profile_displaylastname"
@@ -108,7 +108,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </TextView>
+    </EditText>
 
     <TextView
         android:layout_width="match_parent"
@@ -125,7 +125,7 @@
         android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/profile_displayemail"
@@ -138,7 +138,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </TextView>
+    </EditText>
 
     <TextView
         android:layout_width="match_parent"
@@ -155,7 +155,7 @@
         android:textColor="@color/whiteTextColor">
 
     </TextView>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/profile_displayphonenumber"
@@ -168,7 +168,25 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp">
 
-    </TextView>
+    </EditText>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_edit_profile"
+        android:text="Edit Profile"
+        android:textColor="@color/themeColor"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:background="@color/whiteTextColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_displayphonenumber"
+        android:layout_marginTop="30dp"
+        android:onClick="updateProfile"
+        android:layout_marginHorizontal="30dp"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -181,7 +199,7 @@
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayphonenumber"
+        app:layout_constraintTop_toBottomOf="@id/button_edit_profile"
         android:layout_marginTop="30dp"
         android:onClick="logOut"
         android:layout_marginHorizontal="30dp">

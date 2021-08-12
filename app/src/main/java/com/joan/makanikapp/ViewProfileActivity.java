@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 //import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +38,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ViewProfileActivity extends AppCompatActivity {
 
-    TextView firstname,lastname,email,phone_number,welcome;
-    Button logout;
+    TextView welcome;
+    EditText firstname,lastname,email,phone_number;
+    Button logout,editProfileBtn;
+    String _FIRSTNAME,_LASTNAME,_EMAIL,_PHONENUMBER;
+
     FirebaseDatabase rootnode;
     DatabaseReference reference;
     private String userID;
@@ -67,15 +71,16 @@ public class ViewProfileActivity extends AppCompatActivity {
         phone_number = findViewById(R.id.profile_displayphonenumber);
         welcome = findViewById(R.id.text_welcome);
         logout = findViewById(R.id.button_logout);
+        editProfileBtn = findViewById(R.id.button_edit_profile);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user");
         userID = user.getUid();
 
-        final TextView firstnameTextView = findViewById(R.id.profile_displayfirstname);
-        final TextView lastnameTextView = findViewById(R.id.profile_displaylastname);
-        final TextView emailTextView = findViewById(R.id.profile_displayemail);
-        final TextView phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
+        final EditText firstnameTextView = findViewById(R.id.profile_displayfirstname);
+        final EditText lastnameTextView = findViewById(R.id.profile_displaylastname);
+        final EditText emailTextView = findViewById(R.id.profile_displayemail);
+        final EditText phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
         final TextView welcomeTextView = findViewById(R.id.text_welcome);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -247,6 +252,18 @@ public class ViewProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ViewProfileActivity.this,LoginActivity.class));
                 break;
         }
-
     }
+
+//    public void updateProfile(View view) {
+//        switch (view.getId()){
+//            case R.id.button_edit_profile:
+//                String _EMAIL = email.getEditText().getText().toString;
+//                String _PHONENUMBER = phone_number.getEditText().getText().toString;
+//                firebaseDatebase
+//    }
+
+
+    //editProfileBtn = findViewById(R.id.button_edit_profile);
+
+
 }
