@@ -45,7 +45,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.signAsMechanicCard:
-                i = new Intent(this,NavigationDrawerActivity.class);
+                i = new Intent(this,PaymentActivity.class);
                 startActivity(i);
                 break;
 

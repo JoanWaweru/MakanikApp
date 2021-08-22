@@ -38,4 +38,5 @@
     <string name="mechanic_registration_number">Mechanic Registration Number</string>
     <string name="makanikappNavTitle">MakanikApp</string>
     <string name="makanikap_gmail_com">makanikap@gmail.com</string>
+    <string name="confirm_payment">Confirm Payment</string>
 </resources>

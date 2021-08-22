@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/request_mechanic"
-                        android:textColor="#3ACBF3"
+                        android:textColor="@color/themeColor"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -122,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/view_profile"
                         android:gravity="center"
-                        android:textColor="#3ACBF3"
+                        android:textColor="@color/themeColor"
                         android:textSize="18sp"/>
 
                 </LinearLayout>
@@ -169,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/sign_in_as_mechanic"
-                        android:textColor="#3ACBF3"
+                        android:textColor="@color/themeColor"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -207,7 +207,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/logout"
                         android:gravity="center"
-                        android:textColor="#3ACBF3"
+                        android:textColor="@color/themeColor"
                         android:textSize="18sp"/>
 
                 </LinearLayout>
