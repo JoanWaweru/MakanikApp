@@ -70,7 +70,7 @@ public class MechanicRegisterActivity extends AppCompatActivity {
     }
 
     public void onLoginClick(View view){
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this,MechanicLoginActivity.class));
         overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);
 
     }
@@ -89,6 +89,8 @@ public class MechanicRegisterActivity extends AppCompatActivity {
         String emailaddress = email.getText().toString();
         String phoneno = phone_number.getText().toString();
         String userpassword = password.getText().toString();
+        String status = "offline";
+        String approved = "no";
         mAuth = FirebaseAuth.getInstance();
 
         if(fname.isEmpty()){
@@ -139,8 +141,8 @@ public class MechanicRegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()){
-                            UserHelperClass helperClass = new UserHelperClass(fname,lname,emailaddress,phoneno,userpassword);
-                            FirebaseDatabase.getInstance().getReference("user")
+                            MechanicHelperClass helperClass = new MechanicHelperClass(fname,lname,emailaddress,phoneno,userpassword,status,approved);
+                            FirebaseDatabase.getInstance().getReference("mechanic")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -149,12 +151,12 @@ public class MechanicRegisterActivity extends AppCompatActivity {
                                         Toast.makeText(MechanicRegisterActivity.this,"Sign Up Successful. Check Your Email To Verify Your Account. ",Toast.LENGTH_LONG).show();
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                                        startActivity(new Intent(MechanicRegisterActivity.this,LoginActivity.class));
+                                        startActivity(new Intent(MechanicRegisterActivity.this,MechanicLoginActivity.class));
 
 
                                     }
                                     else {
-                                        Toast.makeText(MechanicRegisterActivity.this,"Sign Up Unsuccessful. Try Again",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(MechanicRegisterActivity.this,"Sign Up Was Unsuccessful. Try Again",Toast.LENGTH_SHORT).show();
 
                                     }
 
@@ -162,7 +164,7 @@ public class MechanicRegisterActivity extends AppCompatActivity {
                             });
                         }
                         else {
-                            Toast.makeText(MechanicRegisterActivity.this,"Sign Up Unsuccessful. Try Again",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MechanicRegisterActivity.this,"Sign Up Unsuccessful. Try Again",Toast.LENGTH_SHORT).show();
 
                         }
 

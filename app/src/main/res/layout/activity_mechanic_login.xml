@@ -52,7 +52,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="14dp"
                     android:layout_marginBottom="48dp"
-                    android:text="Welcome Back \nMechanic!" />
+                    android:text="Welcome  \nMechanic!" />
 
                 <ImageView
                     android:layout_width="120dp"
@@ -66,12 +66,12 @@
             </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputEmail"
+                android:id="@+id/textInputEmail_mechanic"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <EditText
-                    android:id="@+id/editloginTextEmail"
+                    android:id="@+id/editloginTextEmail_mechanic"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_email_hint"
                     android:inputType="textEmailAddress"
@@ -79,12 +79,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputPassword"
+                android:id="@+id/textInputPassword_mechanic"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <EditText
-                    android:id="@+id/editTextloginPassword"
+                    android:id="@+id/editTextloginPassword_mechanic"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_password_hint"
                     android:inputType="textPassword"
@@ -95,11 +95,11 @@
                 style="@style/viewParent"
                 android:layout_gravity="end"
                 android:layout_marginTop="20dp"
-                android:id="@+id/button_forgotpassword"
+                android:id="@+id/button_forgotpassword_mechanic"
                 android:text="Forgot Password?"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/newsMoreTextSize"
-                android:onClick="forgotpassword"/>
+                android:onClick="forgotpassword1"/>
 
             <!--            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
             <!--                android:id="@+id/cirLoginButton"-->
@@ -114,7 +114,7 @@
 
             <Button
 
-                android:id="@+id/button_login"
+                android:id="@+id/button_login_mechanic"
                 android:text="Log In"
                 android:textStyle="bold"
                 android:textSize="30sp"
@@ -124,14 +124,25 @@
                 android:textColor="@color/themeColor"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:onClick="loginClick">
+                android:onClick="loginClick1">
 
             </Button>
             <TextView
                 style="@style/parent"
                 android:layout_marginTop="30dp"
-                android:onClick="onLoginClick"
+                android:onClick="onLoginClick1"
                 android:text="@string/new_mechanic_register_now"
+                android:textAlignment="center"
+                android:textColor="@color/themeColor"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
+            <TextView
+                style="@style/parent"
+                android:id="@+id/user_login_textview"
+                android:layout_marginTop="30dp"
+                android:onClick="logInAsUser"
+                android:text="@string/log_in_as_user"
                 android:textAlignment="center"
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"

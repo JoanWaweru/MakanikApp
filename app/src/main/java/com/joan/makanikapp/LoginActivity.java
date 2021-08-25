@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity{
                     mAuth = FirebaseAuth.getInstance();
                     userLogIn();
                     break;
+
             }
 
     }
@@ -106,7 +107,7 @@ public class LoginActivity extends AppCompatActivity{
                     if (user.isEmailVerified()){
                         //redirect to ViewProfile Activity
 
-                        startActivity(new Intent(LoginActivity.this, MainScreenActivity.class));
+                        startActivity(new Intent(LoginActivity.this, UserMapsActivity.class));
 
                     }
                     else {
@@ -139,5 +140,13 @@ public class LoginActivity extends AppCompatActivity{
     }
 
 
+    public void logInAsMechanic(View view) {
+        switch (view.getId()){
+            case R.id.mechanic_login_texteview:
+                startActivity(new Intent(LoginActivity.this,MechanicLoginActivity.class));
+
+                break;
+        }
+    }
 }
 

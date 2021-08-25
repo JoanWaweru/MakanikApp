@@ -60,7 +60,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         final TextView lastnameTextView = findViewById(R.id.profile_displaylastname);
         final TextView emailTextView = findViewById(R.id.profile_displayemail);
         final TextView phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
-        final TextView welcomeTextView = findViewById(R.id.text_welcome);
+
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -73,7 +73,7 @@ public class ViewProfileActivity extends AppCompatActivity {
                     String email = userProfile.email;
                     String phonenumber = userProfile.phoneno;
 
-                    welcomeTextView.setText("Welcome,  " + firstname + " ");
+
                     firstnameTextView.setText(firstname);
                     lastnameTextView.setText(lastname);
                     emailTextView.setText(email);

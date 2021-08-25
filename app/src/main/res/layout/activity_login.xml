@@ -145,6 +145,17 @@
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal" />
+            <TextView
+                style="@style/parent"
+                android:id="@+id/mechanic_login_texteview"
+                android:layout_marginTop="30dp"
+                android:onClick="logInAsMechanic"
+                android:text="Log in as Mechanic"
+                android:textAlignment="center"
+                android:textColor="@color/themeColor"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
 
 <!--            <LinearLayout-->
