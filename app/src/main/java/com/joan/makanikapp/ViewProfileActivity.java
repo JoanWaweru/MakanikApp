@@ -69,8 +69,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         lastname = findViewById(R.id.profile_displaylastname);
         email = findViewById(R.id.profile_displayemail);
         phone_number = findViewById(R.id.profile_displayphonenumber);
-        welcome = findViewById(R.id.text_welcome);
-        logout = findViewById(R.id.button_logout);
+
         editProfileBtn = findViewById(R.id.button_edit_profile);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -81,7 +80,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         final EditText lastnameTextView = findViewById(R.id.profile_displaylastname);
         final EditText emailTextView = findViewById(R.id.profile_displayemail);
         final EditText phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
-        final TextView welcomeTextView = findViewById(R.id.text_welcome);
+
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -94,7 +93,7 @@ public class ViewProfileActivity extends AppCompatActivity {
                     String email = userProfile.email;
                     String phonenumber = userProfile.phoneno;
 
-                    welcomeTextView.setText("Welcome,  " + firstname + " ");
+
                     firstnameTextView.setText(firstname);
                     lastnameTextView.setText(lastname);
                     emailTextView.setText(email);
@@ -246,11 +245,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
     public void logOut(View view) {
         switch (view.getId()){
-            case R.id.button_logout:
-                mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                startActivity(new Intent(ViewProfileActivity.this,LoginActivity.class));
-                break;
+
         }
     }
 

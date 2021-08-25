@@ -329,7 +329,10 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     loc2.setLongitude(mechanicLatLang.longitude);
 
                     float distance = loc1.distanceTo(loc2);
-                    call_mechanic.setText("Driver Found: "+String.valueOf(distance));
+                    if(distance<100){
+
+                    }
+                    call_mechanic.setText("Mechanic is Here: ");
 
 
                     driverMarker = mMap.addMarker(new MarkerOptions().position(mechanicLatLang).title("Your Mechanic"));
