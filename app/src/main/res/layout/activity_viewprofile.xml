@@ -179,7 +179,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_edit_profile"
         android:layout_marginTop="30dp"
-        android:onClick="EditProfile"
+        android:onClick="updateProfile"
         android:layout_marginHorizontal="30dp">
 
     </Button>

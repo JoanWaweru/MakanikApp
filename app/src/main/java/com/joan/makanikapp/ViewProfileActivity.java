@@ -39,7 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ViewProfileActivity extends AppCompatActivity {
 
     TextView welcome;
-    EditText firstname,lastname,email,phone_number;
+    TextView firstname,lastname,email,phone_number;
     Button logout,editProfileBtn;
     String _FIRSTNAME,_LASTNAME,_EMAIL,_PHONENUMBER;
 
@@ -76,10 +76,10 @@ public class ViewProfileActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("user");
         userID = user.getUid();
 
-        final EditText firstnameTextView = findViewById(R.id.profile_displayfirstname);
-        final EditText lastnameTextView = findViewById(R.id.profile_displaylastname);
-        final EditText emailTextView = findViewById(R.id.profile_displayemail);
-        final EditText phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
+        final TextView firstnameTextView = findViewById(R.id.profile_displayfirstname);
+        final TextView lastnameTextView = findViewById(R.id.profile_displaylastname);
+        final TextView emailTextView = findViewById(R.id.profile_displayemail);
+        final TextView phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
 
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -249,13 +249,16 @@ public class ViewProfileActivity extends AppCompatActivity {
         }
     }
 
-//    public void updateProfile(View view) {
-//        switch (view.getId()){
+    public void updateProfile(View view) {
+        // switch (view.getId()){
 //            case R.id.button_edit_profile:
 //                String _EMAIL = email.getEditText().getText().toString;
 //                String _PHONENUMBER = phone_number.getEditText().getText().toString;
 //                firebaseDatebase
-//    }
+
+            Intent editProfileIntent = new Intent(this,EditingUserProfileActivity.class);
+            startActivity(editProfileIntent);
+    }
 
 
     //editProfileBtn = findViewById(R.id.button_edit_profile);

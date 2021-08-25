@@ -48,7 +48,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         signAsMechanic.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-        editProfile = findViewById(R.id.editProfile);
+        editProfile = findViewById(R.id.button_edit_profile);
 
 
 
@@ -99,7 +99,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.signAsMechanicCard:
-                i = new Intent(this,PaymentActivity.class);
+                i = new Intent(this,MechanicLoginActivity.class);
                 startActivity(i);
                 break;
 

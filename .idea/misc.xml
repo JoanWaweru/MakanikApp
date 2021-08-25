@@ -8,9 +8,17 @@
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/drawable/ic_logout_icon.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/drawable/ic_sign_in_as_mechanic_icon.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/drawable/ic_view_my_profile_icon.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_driver_maps.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_editing_user_profile.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_landing.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_login.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_main_screen.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_mechanic_landing.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_mechanic_login.xml" value="0.1" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_payment.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_user_maps.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_viewprofile.xml" value="0.18645833333333334" />
       </map>
     </option>
   </component>
