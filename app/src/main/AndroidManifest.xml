@@ -47,6 +47,9 @@
             android:label="@string/title_activity_driver_maps" />
         <activity android:name=".EditingUserProfileActivity" />
         <activity
+            android:name=".PaymentActivity"
+            android:exported="true" />
+        <activity
             android:name=".NavigationDrawerActivity"
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
