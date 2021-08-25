@@ -64,6 +64,9 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
     private int radius = 1;
     private Boolean foundMechanic = false;
     private String foundMechanicID;
+    private Boolean requestBol = false;
+    private Marker pickupMarker;
+
 
 
 
@@ -85,15 +88,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
     }
 
-    @Override
-    protected void onDestroy() {
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        if(mapFragment != null) {
-//            mapFragment.onDestroy();
-//        }
-        super.onDestroy();
-    }
+
 
     @Override
     public void onConnected(@Nullable @org.jetbrains.annotations.Nullable Bundle bundle) {
@@ -159,26 +154,62 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
     }
 
     public void call_mechanic(View view) {
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
-        GeoFire geoFire = new GeoFire(reference);
+        if(requestBol){
+            requestBol = false;
 
-        geoFire.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
-                , new GeoFire.CompletionListener() {
-                    @Override
-                    public void onComplete(String key, DatabaseError error) {
-                        if (error != null) {
-                            System.err.println("There was an error saving the request to GeoFire: " + error);
-                        } else {
-                            System.out.println("Request saved on server successfully!");
+            geoQuery.removeAllListeners();
+            mechaniclocationref.removeEventListener(mechanicLocationListener);
+
+            if (foundMechanicID!=null){
+                DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("user").child("mechanic").child(foundMechanicID);
+                mechanicref.setValue(true);
+                foundMechanicID = null;
+
+
+            }
+            foundMechanic = false;
+            radius = 1;
+
+
+            String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
+            GeoFire geoFire = new GeoFire(reference);
+
+            geoFire.removeLocation(userid);
+            if(pickupMarker!= null){
+                pickupMarker.remove();
+            }
+            call_mechanic.setText("Call Mechanic");
+
+
+
+
+        }
+        else{
+            requestBol = true;
+            String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
+            GeoFire geoFire = new GeoFire(reference);
+
+            geoFire.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
+                    , new GeoFire.CompletionListener() {
+                        @Override
+                        public void onComplete(String key, DatabaseError error) {
+                            if (error != null) {
+                                System.err.println("There was an error saving the request to GeoFire: " + error);
+                            } else {
+                                System.out.println("Request saved on server successfully!");
+                            }
+
                         }
+                    });
+            pick_up_point = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+            pickupMarker =mMap.addMarker(new MarkerOptions().position(pick_up_point).title("Pick Up Point"));
+            call_mechanic.setText("Getting your Mechanic...");
+            getClosestMechanic();
 
-                    }
-                });
-        pick_up_point = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(pick_up_point).title("Pick Up Point"));
-        call_mechanic.setText("Getting your Mechanic...");
-        getClosestMechanic();
+        }
+
     }
 //    List<Marker> markerList = new ArrayList<Marker>();
 //    private void mechanicsAround(){
@@ -241,16 +272,19 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 //
 //
 //    }
+    GeoQuery geoQuery;
+
+
 
     private void getClosestMechanic() {
         DatabaseReference mechanicLocation = FirebaseDatabase.getInstance().getReference().child("mechanicavailable");
         GeoFire geoFire = new GeoFire(mechanicLocation);
-        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(pick_up_point.latitude,pick_up_point.longitude),radius);
+        geoQuery = geoFire.queryAtLocation(new GeoLocation(pick_up_point.latitude,pick_up_point.longitude),radius);
         geoQuery.removeAllListeners();
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoLocation location) {
-                if(!foundMechanic){
+                if(!foundMechanic && requestBol){
                     foundMechanic = true;
                     foundMechanicID = key;
                     //Toast.makeText(UserMapsActivity.this,"Mechanic found",Toast.LENGTH_SHORT).show();
@@ -281,7 +315,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
             @Override
             public void onGeoQueryReady() {
-                if(!foundMechanic){
+                if(!foundMechanic && requestBol){
                     radius++;
                     getClosestMechanic();
                     Toast.makeText(UserMapsActivity.this,"nOT FOUND",Toast.LENGTH_SHORT).show();
@@ -296,12 +330,14 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             }
         });
     }
+    private DatabaseReference mechaniclocationref;
+    private ValueEventListener mechanicLocationListener;
 
     private Marker driverMarker;
     private void getMechanicLocation() {
-        DatabaseReference mechaniclocationref = FirebaseDatabase.getInstance().getReference().child("mechanics_working").child(foundMechanicID).child("l");
+        mechaniclocationref= FirebaseDatabase.getInstance().getReference().child("mechanics_working").child(foundMechanicID).child("l");
 
-        mechaniclocationref.addValueEventListener(new ValueEventListener() {
+        mechanicLocationListener = mechaniclocationref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -330,9 +366,14 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
                     float distance = loc1.distanceTo(loc2);
                     if(distance<100){
+                        call_mechanic.setText("Mechanic is Here");
 
                     }
-                    call_mechanic.setText("Mechanic is Here: ");
+                    else {
+                        call_mechanic.setText("Mechanic Found: "+String.valueOf(distance));
+
+                    }
+
 
 
                     driverMarker = mMap.addMarker(new MarkerOptions().position(mechanicLatLang).title("Your Mechanic"));

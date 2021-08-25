@@ -101,7 +101,7 @@ public class MechanicLoginActivity extends AppCompatActivity {
                     if (user.isEmailVerified()){
                         //redirect to ViewProfile Activity
 
-                        startActivity(new Intent(MechanicLoginActivity.this, MechanicMapsActivity.class));
+                        startActivity(new Intent(MechanicLoginActivity.this, MechanicLandingActivity.class));
 
                     }
                     else {
