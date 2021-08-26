@@ -118,7 +118,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                     mcustomerfname.setText("");
                     mcustomerlname.setText("");
                     mcustomernumber.setText("");
-                    mCustomerProfileImage.setImageResource(R.drawable.default_user_image);
+                    mCustomerProfileImage.setImageResource(R.drawable.ic_view_my_profile_icon);
 
 
                 }}

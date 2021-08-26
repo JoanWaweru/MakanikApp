@@ -47,7 +47,7 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
         signAsMechanic.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-        editProfile = findViewById(R.id.editProfile);
+        editProfile = findViewById(R.id.button_edit_profile);
 
 
 

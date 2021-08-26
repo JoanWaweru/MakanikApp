@@ -46,11 +46,11 @@
     <string name="mechanic_registration_number">Mechanic Registration Number</string>
     <string name="makanikappNavTitle">MakanikApp</string>
     <string name="makanikap_gmail_com">makanikap@gmail.com</string>
-    <string name="title_activity_mechanic_maps">Mechanic Maps</string>
-    <string name="title_activity_user_maps">User Maps</string>
-    <string name="view_requests">View Requests</string>
-    <string name="log_in_as_user">Log In As A User</string>
-    <string name="confirm_payment">Confirm Payment</string>
-    <string name="call_mechanic">Call Mechanic</string>
-    <string name="edit_profile">Mechanic Edit Profile</string>
+<!--    <string name="title_activity_mechanic_maps">Mechanic Maps</string>-->
+<!--    <string name="title_activity_user_maps">User Maps</string>-->
+<!--    <string name="view_requests">View Requests</string>-->
+<!--    <string name="log_in_as_user">Log In As A User</string>-->
+<!--    <string name="confirm_payment">Confirm Payment</string>-->
+<!--    <string name="call_mechanic">Call Mechanic</string>-->
+<!--    <string name="edit_profile">Mechanic Edit Profile</string>-->
 </resources>
