@@ -12,6 +12,9 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
@@ -38,6 +41,7 @@ import com.joan.makanikapp.databinding.ActivityDriverMapsBinding;
 import com.joan.makanikapp.databinding.ActivityUserMapsBinding;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Map;
@@ -55,6 +59,10 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     DatabaseReference reference;
     private FirebaseAuth mAuth;
     private String customerid = "";
+    private LinearLayout customerInfo;
+    private ImageView mCustomerProfileImage;
+    private TextView mcustomerfname,mcustomerlname,mcustomernumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +78,19 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getAssignedCustomer();
+
+        mcustomerfname = findViewById(R.id.customer_fname);
+        mcustomerlname = findViewById(R.id.customer_lname);
+        mcustomernumber = findViewById(R.id.customer_number);
+        customerInfo = (LinearLayout) findViewById(R.id.customer_information);
+        mCustomerProfileImage = (ImageView) findViewById(R.id.customer_profile_image);
+
+
     }
 
     private void getAssignedCustomer() {
         String mechanicid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference assignedCustomerRef = FirebaseDatabase.getInstance().getReference().child("user").child("mechanic").child(mechanicid).child("userID");
+        DatabaseReference assignedCustomerRef = FirebaseDatabase.getInstance().getReference().child("mechanic").child(mechanicid).child("userID");
         assignedCustomerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -82,6 +98,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
                         customerid = snapshot.getValue().toString();
                         getAssignedCustomerPickUpPoint();
+                        getAssignedCustomerInformation();
 
 
 
@@ -97,6 +114,12 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
                     }
+                    customerInfo.setVisibility(View.GONE);
+                    mcustomerfname.setText("");
+                    mcustomerlname.setText("");
+                    mcustomernumber.setText("");
+                    mCustomerProfileImage.setImageResource(R.drawable.default_user_image);
+
 
                 }}
 
@@ -107,6 +130,43 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         });
 
     }
+
+    private void getAssignedCustomerInformation() {
+        customerInfo.setVisibility(View.VISIBLE);
+        DatabaseReference customerDatabaseReference = FirebaseDatabase.getInstance().getReference().child("user").child(customerid);
+        customerDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists() && snapshot.getChildrenCount()>0){
+                    Map<String,Object> map = (Map<String,Object>) snapshot.getValue();
+                    if(map.get("fname")!=null){
+
+                        mcustomerfname.setText(map.get("fname").toString());
+                    }
+                    if(map.get("lname")!=null){
+
+                        mcustomerlname.setText(map.get("lname").toString());
+                    }
+                    if(map.get("phoneno")!=null){
+
+                        mcustomerfname.setText(map.get("phoneno").toString());
+                    }
+//                    if(map.get("profileImageUrl")!=null){
+//                        mProfileImageUrl = map.get("profileImageUrl").toString();
+//                        Glide.with(getApplication()).load(mProfileImageUrl).into(mCustomerProfileImage);
+//
+//                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
     Marker pickUpMarker;
     private DatabaseReference customerpickuppointlocationref;
     private ValueEventListener customerpickuppointlocationrefListener;

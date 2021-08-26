@@ -161,7 +161,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             mechaniclocationref.removeEventListener(mechanicLocationListener);
 
             if (foundMechanicID!=null){
-                DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("user").child("mechanic").child(foundMechanicID);
+                DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
                 mechanicref.setValue(true);
                 foundMechanicID = null;
 
@@ -289,7 +289,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     foundMechanicID = key;
                     //Toast.makeText(UserMapsActivity.this,"Mechanic found",Toast.LENGTH_SHORT).show();
 
-                    DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("user").child("mechanic").child(foundMechanicID);
+                    DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
                     String customerid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     HashMap hashMap = new HashMap();
                     hashMap.put("userID",customerid);
@@ -318,7 +318,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                 if(!foundMechanic && requestBol){
                     radius++;
                     getClosestMechanic();
-                    Toast.makeText(UserMapsActivity.this,"nOT FOUND",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserMapsActivity.this,"Not Found",Toast.LENGTH_SHORT).show();
 
                 }
 
