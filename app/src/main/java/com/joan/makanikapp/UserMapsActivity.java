@@ -385,9 +385,8 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     float distance = loc1.distanceTo(loc2);
                     if(distance<100){
                         call_mechanic.setText("Mechanic is Here");
-                        Intent intent = new Intent(UserMapsActivity.this, RateMechanicActivity.class);
-                        String message = rideId;
-                        intent.putExtra(EXTRA_MESSAGE, message);
+                        startActivity(new Intent(UserMapsActivity.this, RateMechanicActivity.class));
+
 
 
                     }
