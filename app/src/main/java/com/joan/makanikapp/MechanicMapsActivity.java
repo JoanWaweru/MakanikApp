@@ -18,6 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.ConnectionResult;
@@ -33,6 +38,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,10 +52,11 @@ import com.joan.makanikapp.databinding.ActivityUserMapsBinding;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MechanicMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
+public class MechanicMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
 
     private GoogleMap mMap;
     GoogleApiClient googleApiClient;
@@ -65,6 +73,9 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     private ImageView mCustomerProfileImage;
     private TextView mcustomerfname,mcustomerlname,mcustomernumber;
     SupportMapFragment mapFragment;
+    private List<Polyline> polylines;
+    private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};
+
 
 
     @Override
@@ -82,6 +93,8 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                 .findFragmentById(R.id.map);
 
         getAssignedCustomer();
+        polylines = new ArrayList<>();
+
 
         mcustomerfname = findViewById(R.id.customer_fname);
         mcustomerlname = findViewById(R.id.customer_lname);
@@ -116,6 +129,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
                 }else {
+                    erasePolyLines();
                     customerid = "";
                     if (pickUpMarker != null) {
                         pickUpMarker.remove();
@@ -200,9 +214,11 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                     if(map.get(1) !=  null){
                         locationLong = Double.parseDouble(map.get(1).toString());
                     }
-                    LatLng mechanicLatLang = new LatLng(locationLat, locationLong);
+                    LatLng userLatLang = new LatLng(locationLat, locationLong);
 
-                    pickUpMarker = mMap.addMarker(new MarkerOptions().position(mechanicLatLang).title("Pick Up Point"));
+                    pickUpMarker = mMap.addMarker(new MarkerOptions().position(userLatLang).title("Pick Up Point"));
+
+                    getRouteToUser(userLatLang);
 
 
 
@@ -216,6 +232,16 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
             }
         });
 
+    }
+
+    private void getRouteToUser(LatLng userLatLang) {
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener(this)
+                .alternativeRoutes(false)
+                .waypoints(new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude()), userLatLang)
+                .build();
+        routing.execute();
     }
 
 
@@ -365,6 +391,59 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
 
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+        if(e != null) {
+            Toast.makeText(MechanicMapsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(MechanicMapsActivity.this, "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int shortestRouteIndex) {
+        if(polylines.size()>0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int i = 0; i <route.size(); i++) {
+
+            //In case of more than 5 alternative routes
+            int colorIndex = i % COLORS.length;
+
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
+            polyOptions.width(10 + i * 3);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = mMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+
+            Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
+    }
+    private void erasePolyLines(){
+        for(Polyline line : polylines){
+            line.remove();
+        }
+        polylines.clear();
     }
 }
 
