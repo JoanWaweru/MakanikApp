@@ -1,9 +1,9 @@
-package com.joan.makanikapp;
+ package com.joan.makanikapp;
 
 //import androidx.annotation.ColorInt;
 //import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.annotation.NonNull;
+        import androidx.appcompat.app.AppCompatActivity;
 //import androidx.appcompat.widget.Toolbar;
 //import androidx.core.content.ContextCompat;
 //import androidx.fragment.app.Fragment;
@@ -11,24 +11,24 @@ import androidx.appcompat.app.AppCompatActivity;
 //import androidx.recyclerview.widget.LinearLayoutManager;
 //import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+        import android.content.Intent;
 //import android.content.res.TypedArray;
 //import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.View;
+        import android.os.Bundle;
+        import android.view.View;
 //import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.auth.FirebaseUser;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
 //import com.yarolegovich.slidingrootnav.SlidingRootNav;
 //import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 //
@@ -39,7 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ViewProfileActivity extends AppCompatActivity {
 
     TextView welcome;
-    EditText firstname,lastname,email,phone_number;
+    TextView firstname,lastname,email,phone_number;
     Button logout,editProfileBtn;
     String _FIRSTNAME,_LASTNAME,_EMAIL,_PHONENUMBER;
 
@@ -76,10 +76,10 @@ public class ViewProfileActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("user");
         userID = user.getUid();
 
-        final EditText firstnameTextView = findViewById(R.id.profile_displayfirstname);
-        final EditText lastnameTextView = findViewById(R.id.profile_displaylastname);
-        final EditText emailTextView = findViewById(R.id.profile_displayemail);
-        final EditText phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
+        final TextView firstnameTextView = findViewById(R.id.profile_displayfirstname);
+        final TextView lastnameTextView = findViewById(R.id.profile_displaylastname);
+        final TextView emailTextView = findViewById(R.id.profile_displayemail);
+        final TextView phonenumberTextView = findViewById(R.id.profile_displayphonenumber);
 
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -249,16 +249,20 @@ public class ViewProfileActivity extends AppCompatActivity {
         }
     }
 
-//    public void updateProfile(View view) {
-//        switch (view.getId()){
+    public void updateProfile(View view) {
+        // switch (view.getId()){
 //            case R.id.button_edit_profile:
 //                String _EMAIL = email.getEditText().getText().toString;
 //                String _PHONENUMBER = phone_number.getEditText().getText().toString;
 //                firebaseDatebase
-//    }
+
+        Intent editProfileIntent = new Intent(this,EditingUserProfileActivity.class);
+        startActivity(editProfileIntent);
+    }
 
 
     //editProfileBtn = findViewById(R.id.button_edit_profile);
 
 
 }
+

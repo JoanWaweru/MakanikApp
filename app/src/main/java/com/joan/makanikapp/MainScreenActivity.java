@@ -48,7 +48,6 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         signAsMechanic.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-        editProfile = findViewById(R.id.editProfile);
 
 
 
