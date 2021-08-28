@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
@@ -62,6 +64,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     private LinearLayout customerInfo;
     private ImageView mCustomerProfileImage;
     private TextView mcustomerfname,mcustomerlname,mcustomernumber;
+    SupportMapFragment mapFragment;
 
 
     @Override
@@ -74,9 +77,10 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
         getAssignedCustomer();
 
         mcustomerfname = findViewById(R.id.customer_fname);
@@ -84,6 +88,15 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         mcustomernumber = findViewById(R.id.customer_number);
         customerInfo = (LinearLayout) findViewById(R.id.customer_information);
         mCustomerProfileImage = (ImageView) findViewById(R.id.customer_profile_image);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MechanicMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
+
+        }
+        else{
+            mapFragment.getMapAsync(this);
+
+        }
 
 
     }
@@ -217,7 +230,8 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         mMap = googleMap;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
+            ActivityCompat.requestPermissions(MechanicMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
+
         }
         buildGoogleApiClient();
         mMap.setMyLocationEnabled(true);
@@ -298,7 +312,8 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
+            ActivityCompat.requestPermissions(MechanicMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
+
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
 
@@ -318,6 +333,26 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    final int PERMISSION_LOCATION_CODE =1;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case PERMISSION_LOCATION_CODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    mapFragment.getMapAsync(this);
+
+                }
+                else {
+                    Toast.makeText(MechanicMapsActivity.this,"Allow Location Permission",Toast.LENGTH_SHORT).show();
+
+                }
+                break;
+
+        }
     }
 
     @Override

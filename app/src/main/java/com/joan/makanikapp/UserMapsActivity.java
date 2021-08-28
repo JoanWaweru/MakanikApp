@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -66,6 +67,10 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
     private String foundMechanicID;
     private Boolean requestBol = false;
     private Marker pickupMarker;
+    private String rideId;
+    public static final String EXTRA_MESSAGE
+            = "com.example.android.makanikapp.extra.MESSAGE";
+    SupportMapFragment mapFragment;
 
 
 
@@ -79,11 +84,22 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+         mapFragment= (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(UserMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
+
+        }
+        else{
+            mapFragment.getMapAsync(this);
+
+        }
 
         call_mechanic = findViewById(R.id.call_mechanic);
+
+        //rideId = getIntent().getExtras().getString("rideId");
 
 
     }
@@ -99,7 +115,8 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
+            ActivityCompat.requestPermissions(UserMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
+
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
 
@@ -130,7 +147,8 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
+            ActivityCompat.requestPermissions(UserMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
+
         }
         buildGoogleApiClient();
         mMap.setMyLocationEnabled(true);
@@ -318,7 +336,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                 if(!foundMechanic && requestBol){
                     radius++;
                     getClosestMechanic();
-//                    Toast.makeText(UserMapsActivity.this,"Not Found",Toast.LENGTH_SHORT).show();
+
 
                 }
 
@@ -367,6 +385,10 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     float distance = loc1.distanceTo(loc2);
                     if(distance<100){
                         call_mechanic.setText("Mechanic is Here");
+                        Intent intent = new Intent(UserMapsActivity.this, RateMechanicActivity.class);
+                        String message = rideId;
+                        intent.putExtra(EXTRA_MESSAGE, message);
+
 
                     }
                     else {
@@ -389,5 +411,24 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             }
         });
 
+    }
+    final int PERMISSION_LOCATION_CODE =1;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case PERMISSION_LOCATION_CODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    mapFragment.getMapAsync(this);
+
+                }
+                else {
+                    Toast.makeText(UserMapsActivity.this,"Allow Location Permission",Toast.LENGTH_SHORT).show();
+
+                }
+                break;
+
+        }
     }
 }

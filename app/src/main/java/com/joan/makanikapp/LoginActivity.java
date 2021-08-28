@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity{
                     if (user.isEmailVerified()){
                         //redirect to ViewProfile Activity
 
-                        startActivity(new Intent(LoginActivity.this, MainScreenActivity.class));
+                        startActivity(new Intent(LoginActivity.this, UserMapsActivity.class));
 
                     }
                     else {
