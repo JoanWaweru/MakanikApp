@@ -6,20 +6,20 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_quick_information"
         android:name="com.joan.makanikapp.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="Quick Information"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_about_us_fragment"
         android:name="com.joan.makanikapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="About Us"
         tools:layout="@layout/fragment_gallery" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.joan.makanikapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_slideshow"-->
+<!--        android:name="com.joan.makanikapp.ui.slideshow.SlideshowFragment"-->
+<!--        android:label="@string/menu_slideshow"-->
+<!--        tools:layout="@layout/fragment_slideshow" />-->
 </navigation>

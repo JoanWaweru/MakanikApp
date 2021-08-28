@@ -318,7 +318,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                 if(!foundMechanic && requestBol){
                     radius++;
                     getClosestMechanic();
-                    Toast.makeText(UserMapsActivity.this,"Not Found",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UserMapsActivity.this,"Not Found",Toast.LENGTH_SHORT).show();
 
                 }
 

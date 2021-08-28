@@ -20,7 +20,7 @@ import java.util.List;
 
 public class UserIncidentPageActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
-    private Button image_uploader;
+    private Button image_uploader, submit_incident;
     private RecyclerView incident_images;
     private List<String> filenamelist;
     private List<String> filedonelist;
@@ -31,6 +31,7 @@ public class UserIncidentPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_incident_page);
         image_uploader = findViewById(R.id.image_breakdown_images);
+        submit_incident = findViewById(R.id.button_Find_Mechanic);
         incident_images = findViewById(R.id.images_breakdown_report);
         filenamelist = new ArrayList<>();
         filedonelist = new ArrayList<>();
@@ -57,8 +58,16 @@ public class UserIncidentPageActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"select Picture"),RESULT_LOAD_IMAGE);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"),RESULT_LOAD_IMAGE);
 
+            }
+        });
+
+        submit_incident.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent submitIncidentIntent = new Intent(UserIncidentPageActivity.this, UserMapsActivity.class);
+                startActivity(submitIncidentIntent);
             }
         });
     }

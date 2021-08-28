@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUsActivity"
+    android:background="@color/whiteTextColor">
+
+    <TextView
+        android:id="@+id/aboutUsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_us"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/darkTextColor"
+        android:textAllCaps="true"
+        android:fontFamily="@font/germania_one"/>
+
+    <TextView
+        android:id="@+id/aboutUsDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aboutUsTitle"
+        android:text="@string/about_us_description"
+        android:textColor="@color/darkTextColor"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/backToSettingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aboutUsDescription"
+        android:text="@string/back_to_settings"
+        android:layout_centerHorizontal="true"
+        style="@style/loginButton"
+        android:onClick="backToSettings"/>
+
+</RelativeLayout>

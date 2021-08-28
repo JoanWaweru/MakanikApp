@@ -29,7 +29,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
     FirebaseAuth mAuth;
     FirebaseUser user;
 
-    public CardView callMechanic,viewProfile,signAsMechanic,logout;
+    public CardView callMechanic,viewProfile,settings,logout;
     private TextView welcome;
 
 
@@ -40,17 +40,15 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
 
         callMechanic = findViewById(R.id.callMechanicCard);
         viewProfile = findViewById(R.id.viewProfileCard);
-        signAsMechanic = findViewById(R.id.signAsMechanicCard);
+        settings = findViewById(R.id.settingsCard);
         logout = findViewById(R.id.logoutCard);
 
         callMechanic.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
-        signAsMechanic.setOnClickListener(this);
+        settings.setOnClickListener(this);
         logout.setOnClickListener(this);
 
         editProfile = findViewById(R.id.button_edit_profile);
-
-
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user");
@@ -98,8 +96,8 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
                 startActivity(i);
                 break;
 
-            case R.id.signAsMechanicCard:
-                i = new Intent(this,MechanicLoginActivity.class);
+            case R.id.settingsCard:
+                i = new Intent(this,SettingsActivity.class);
                 startActivity(i);
                 break;
 
