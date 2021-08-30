@@ -1,27 +1,25 @@
+package com.joan.makanikapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-        package com.joan.makanikapp;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.Toast;
-
-        import com.google.android.gms.tasks.OnSuccessListener;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-
-        import java.util.HashMap;
+import java.util.HashMap;
 
 public class EditingUserProfileActivity extends AppCompatActivity {
     EditText email,phone_number;
@@ -100,7 +98,7 @@ public class EditingUserProfileActivity extends AppCompatActivity {
                 hashMap.put("phoneno", phonenumberTextView.getText().toString());
 
                 reference.child(userID).updateChildren(hashMap).addOnSuccessListener(suc-> {
-                    Toast.makeText(EditingUserProfileActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditingUserProfileActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                 }).addOnFailureListener(er->{
                             Toast.makeText(EditingUserProfileActivity.this,"Something Went Wrong. Try Again"+er.getMessage(),Toast.LENGTH_LONG).show();
                         }
@@ -110,8 +108,8 @@ public class EditingUserProfileActivity extends AppCompatActivity {
 //                reference.child("user").child("email").setValue(emailTextView);
 //                reference.child("user").child("phoneno").setValue(phonenumberTextView);
 
-                emailTextView.setText(email);
-                phonenumberTextView.setText(phonenumber);
+        emailTextView.setText(email);
+        phonenumberTextView.setText(phonenumber);
             }
 
             @Override
@@ -120,13 +118,8 @@ public class EditingUserProfileActivity extends AppCompatActivity {
 
             }
 
-
+            public void Back(View view) {
+            }
         });
     }
-
-    public void Back(View view) {
-        startActivity(new Intent(EditingUserProfileActivity.this, ViewProfileActivity.class));
-
-    }
 }
-

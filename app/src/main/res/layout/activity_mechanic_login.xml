@@ -124,7 +124,7 @@
                 android:textColor="@color/themeColor"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:onClick="loginClick1">
+                android:onClick="onLoginClick2">
 
             </Button>
             <TextView
@@ -217,7 +217,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
-        android:onClick="onLoginClick"
+        android:onClick="onLoginClick2"
         android:src="@drawable/ic_add_img" />
 
 </RelativeLayout>

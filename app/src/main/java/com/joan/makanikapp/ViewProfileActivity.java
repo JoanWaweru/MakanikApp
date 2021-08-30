@@ -1,9 +1,9 @@
- package com.joan.makanikapp;
+package com.joan.makanikapp;
 
 //import androidx.annotation.ColorInt;
 //import androidx.annotation.ColorRes;
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 //import androidx.appcompat.widget.Toolbar;
 //import androidx.core.content.ContextCompat;
 //import androidx.fragment.app.Fragment;
@@ -11,24 +11,24 @@
 //import androidx.recyclerview.widget.LinearLayoutManager;
 //import androidx.recyclerview.widget.RecyclerView;
 
-        import android.content.Intent;
+import android.content.Intent;
 //import android.content.res.TypedArray;
 //import android.graphics.drawable.Drawable;
-        import android.os.Bundle;
-        import android.view.View;
+import android.os.Bundle;
+import android.view.View;
 //import android.widget.AdapterView;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 //import com.yarolegovich.slidingrootnav.SlidingRootNav;
 //import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 //
@@ -256,8 +256,8 @@ public class ViewProfileActivity extends AppCompatActivity {
 //                String _PHONENUMBER = phone_number.getEditText().getText().toString;
 //                firebaseDatebase
 
-        Intent editProfileIntent = new Intent(this,EditingUserProfileActivity.class);
-        startActivity(editProfileIntent);
+            Intent editProfileIntent = new Intent(this,EditingUserProfileActivity.class);
+            startActivity(editProfileIntent);
     }
 
 
@@ -265,4 +265,3 @@ public class ViewProfileActivity extends AppCompatActivity {
 
 
 }
-

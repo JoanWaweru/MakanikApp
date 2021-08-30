@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.joan.makanikapp">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -24,8 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MechanicBreakdownFeedbackActivity"></activity>
-        <activity android:name=".RateMechanicActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,7 +40,7 @@
 
         <activity
             android:name=".UserMapsActivity"
-            android:label="@string/title_activity_user_maps" />
+            android:label="@string/title_activity_user_maps"></activity>
         <activity android:name=".MechanicLandingActivity" />
         <activity
             android:name=".MechanicMapsActivity"
@@ -63,10 +63,12 @@
         </activity>
         <activity android:name=".MainScreenActivity">
 
-
+            <!-- <intent-filter> -->
+            <!-- &lt;!&ndash;        <action android:name="android.intent.action.MAIN" />&ndash;&gt; -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".UserIncidentPageActivity" />
-        <activity android:name=".ViewProfileActivity" />
+        <activity android:name=".ViewProfileActivity" /> <!-- <activity android:name=".DashboardFragment" /> -->
         <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".LoginActivity"

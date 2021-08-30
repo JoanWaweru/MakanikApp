@@ -52,7 +52,7 @@ public class MechanicLoginActivity extends AppCompatActivity {
     }
 
 
-    public void loginClick1(View view) {
+    public void onLoginClick2(View view) {
         switch (view.getId()){
             case R.id.button_login_mechanic:
                 rootnode = FirebaseDatabase.getInstance();
