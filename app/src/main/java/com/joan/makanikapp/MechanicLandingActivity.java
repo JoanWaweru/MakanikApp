@@ -90,8 +90,8 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
                 startActivity(i);
                 break;
 
-            case R.id.viewProfileCard:
-                i = new Intent(this,ViewProfileActivity.class);
+            case R.id.viewMechanicProfileCard:
+                i = new Intent(this,MechanicViewProfileActivity.class);
                 startActivity(i);
                 break;
 

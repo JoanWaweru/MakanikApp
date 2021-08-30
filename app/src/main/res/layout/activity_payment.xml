@@ -60,42 +60,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number" />
 
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/amount" />-->
+
     <Button
         android:id="@+id/button"
+        style="@style/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/amount"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/whiteTextColor"
+        android:text="Pay"
+        android:textColor="@color/themeColor"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        style="@style/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/amount"
         android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginLeft="131dp"
+        android:layout_marginTop="43dp"
         android:layout_marginEnd="8dp"
-        android:text="Pay"
-        style="@style/parent"
+        android:layout_toRightOf="@+id/button"
         android:background="@color/whiteTextColor"
+        android:text="Back"
         android:textColor="@color/themeColor"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount" />
+        android:textSize="20sp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_below="@id/button"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/amount"
-        app:layout_constraintVertical_bias="0.129" />
+    <!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_below="@id/button"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:visibility="invisible"-->
+<!--        style="?android:attr/progressBarStyle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.193"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/amount"-->
+<!--        app:layout_constraintVertical_bias="0.129" />-->
 
 </RelativeLayout>

@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 public class EditingUserProfileActivity extends AppCompatActivity {
     EditText email,phone_number;
-    Button editingProfile;
+    Button editingProfile,backBtn;
 
     FirebaseDatabase rootnode;
     DatabaseReference reference;
@@ -39,6 +39,7 @@ public class EditingUserProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.profile_displayingemail);
         phone_number = findViewById(R.id.profile_displayingphonenumber);
         editingProfile = findViewById(R.id.editingProfile);
+        backBtn = findViewById(R.id.back_viewingprofile);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user");
@@ -118,7 +119,18 @@ public class EditingUserProfileActivity extends AppCompatActivity {
 
             }
 
-            public void Back(View view) {
+
+        });
+//        public void Back(View view) {
+//            Intent i = new Intent(EditingUserProfileActivity.this,ViewProfileActivity.class);
+//            startActivity(i);
+//        }
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(EditingUserProfileActivity.this,ViewProfileActivity.class);
+                startActivity(i);
             }
         });
     }

@@ -7,12 +7,12 @@
     android:layout_gravity="center"
     android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
-    tools:context=".EditingUserProfileActivity">
+    tools:context=".EditingMechanicProfileActivity">
 
 
 
     <TextView
-        android:id="@+id/text_intro"
+        android:id="@+id/text_mechanic_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/intro"
@@ -33,11 +33,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profile_email"
+        android:id="@+id/profile_mechanic_email"
         android:text="@string/login_email_hint"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/text_intro"
+        app:layout_constraintTop_toBottomOf="@id/text_mechanic_intro"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
@@ -48,10 +48,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/profile_displayingemail"
+        android:id="@+id/profile_mechanic_displayingemail"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_email"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_email"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
@@ -63,11 +63,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profile_phonenumber"
+        android:id="@+id/profile_mechanic_phonenumber"
         android:text="@string/phone_number"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayingemail"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_displayingemail"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
@@ -78,10 +78,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/profile_displayingphonenumber"
+        android:id="@+id/profile_mechanic_displayingphonenumber"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_phonenumber"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_phonenumber"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="parent"
@@ -92,7 +92,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editingProfile"
+        android:id="@+id/mechanic_editingProfile"
         android:text="Edit Profile"
         android:textColor="@color/themeColor"
         android:textStyle="bold"
@@ -101,16 +101,16 @@
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayingphonenumber"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_displayingphonenumber"
         android:layout_marginTop="30dp"
-        android:onClick="EditingProfile"
+        android:onClick="MechanicEditingProfile"
         android:layout_marginHorizontal="30dp">
 
     </Button>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/back_viewingprofile"
+        android:id="@+id/mechanic_back_viewingprofile"
         android:text="Back"
         android:textColor="@color/themeColor"
         android:textStyle="bold"
@@ -118,8 +118,8 @@
         android:background="@color/whiteTextColor"
         android:textAlignment="center"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayingphonenumber"
-        app:layout_constraintLeft_toRightOf="@id/editingProfile"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_displayingphonenumber"
+        app:layout_constraintLeft_toRightOf="@id/mechanic_editingProfile"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="50dp">
 

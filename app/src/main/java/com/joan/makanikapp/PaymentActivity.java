@@ -3,6 +3,7 @@ package com.joan.makanikapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +25,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.number) EditText mNumber;
     @BindView(R.id.amount) EditText mAmount;
     @BindView(R.id.button) Button mButton;
-    @BindView(R.id.progressBar) ProgressBar mLoad;
+    @BindView(R.id.buttonBack) Button backButton;
+    //@BindView(R.id.progressBar) ProgressBar mLoad;
     private Daraja daraja;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
         mButton.setOnClickListener(this);
+        backButton = findViewById(R.id.buttonBack);
+
         daraja = Daraja.with("W6tsyGErC8GnfBOtBaMPIc6lhegpNH68", "oCxZ5Q8JadTtYLz0", new DarajaListener<AccessToken>() {
             @Override
             public void onResult(AccessToken accessToken) {
@@ -42,6 +46,13 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             public void onError(String error) {
                 Log.e(PaymentActivity.this.getClass().getSimpleName(), error);
 
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PaymentActivity.this,SettingsActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -72,7 +83,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                 mAmount.setError("Amount should be more than 0");
                 return;
             }
-            mLoad.setVisibility(View.VISIBLE);
+            //mLoad.setVisibility(View.VISIBLE);
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
@@ -100,4 +111,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             );
         }
     }
+
+
 }

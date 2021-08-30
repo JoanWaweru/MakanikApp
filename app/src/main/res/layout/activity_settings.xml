@@ -266,7 +266,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/logoutCard"
+                android:id="@+id/paymentCard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="12dp"
@@ -284,19 +284,19 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/logoutImage"
+                        android:id="@+id/paymentImage"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:src="@drawable/ic_logout_icon" />
+                        android:src="@drawable/ic_baseline_payment" />
 
                     <TextView
                         android:id="@+id/logoutText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/logout"
+                        android:text="Pay\nMechanic"
                         android:textColor="@color/themeColor"
                         android:textSize="18sp" />
 

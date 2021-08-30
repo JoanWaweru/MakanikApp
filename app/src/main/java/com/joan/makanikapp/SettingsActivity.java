@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     FirebaseAuth mAuth;
     FirebaseUser user;
 
-    public CardView quickInformation,aboutUs,breakdownHistory,contactUs, shareApp,logout;
+    public CardView quickInformation,aboutUs,breakdownHistory,contactUs, shareApp,payment;
     //private TextView welcome;
 
 
@@ -43,14 +43,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         breakdownHistory = findViewById(R.id.viewBreakdownHistoryCard);
         contactUs = findViewById(R.id.contactUsCard);
         shareApp = findViewById(R.id.shareAppCard);
-        logout = findViewById(R.id.logoutCard);
+        payment = findViewById(R.id.paymentCard);
 
         quickInformation.setOnClickListener(this);
         aboutUs.setOnClickListener(this);
         breakdownHistory.setOnClickListener(this);
         contactUs.setOnClickListener(this);
         shareApp.setOnClickListener(this);
-        logout.setOnClickListener(this);
+        payment.setOnClickListener(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user");
@@ -122,12 +122,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
 
-            case R.id.logoutCard:
-                mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                i = new Intent(this,LoginActivity.class);
+            case R.id.paymentCard:
+                i = new Intent(this,PaymentActivity.class);
                 startActivity(i);
-                finish();
                 break;
         }
 
