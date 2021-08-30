@@ -63,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserHelperClass userProfile = snapshot.getValue(UserHelperClass.class);
+                //UserHelperClass userProfile = snapshot.getValue(UserHelperClass.class);
 
 //                if (userProfile != null) {
 //                    String firstname = userProfile.fname;
