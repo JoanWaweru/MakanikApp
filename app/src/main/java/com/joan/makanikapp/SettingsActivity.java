@@ -101,7 +101,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.viewBreakdownHistoryCard:
-                i = new Intent(this,ViewBreakdownHistoryActivity.class);
+                i = new Intent(this,BreakdownMainActivity.class);
                 startActivity(i);
                 break;
 

@@ -24,6 +24,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".BreakdownMainActivity"
+            android:exported="true" />
         <activity
             android:name=".UserIncidentPageActivity2"
             android:exported="true" />
@@ -49,8 +53,10 @@
         <activity android:name=".EditingUserProfileActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ViewRequestsActivity" />
-        <activity android:name="MechanicViewProfileActivity"/>
-        <activity android:name="EditingMechanicProfileActivity"/>
+        <activity android:name=".MechanicViewProfileActivity" />
+        <activity android:name=".EditingMechanicProfileActivity" />
+        <activity android:name=".BreakdownList"/>
+
         <activity
             android:name=".PaymentActivity"
             android:exported="true" />
@@ -72,8 +78,7 @@
             <!-- &lt;!&ndash;        <action android:name="android.intent.action.MAIN" />&ndash;&gt; -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".UserIncidentPageActivity" />
-<!--        <activity android:name=".UserIncidentPageActivity2" />-->
+        <activity android:name=".UserIncidentPageActivity" /> <!-- <activity android:name=".UserIncidentPageActivity2" /> -->
         <activity android:name=".ViewProfileActivity" /> <!-- <activity android:name=".DashboardFragment" /> -->
         <activity android:name=".ForgotPasswordActivity" />
         <activity
