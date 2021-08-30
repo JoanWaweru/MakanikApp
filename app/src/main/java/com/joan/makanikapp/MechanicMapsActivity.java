@@ -53,6 +53,7 @@ import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,9 +91,10 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.mechanicmap);
 
-        getAssignedCustomer();
+
+
         polylines = new ArrayList<>();
 
 
@@ -109,18 +111,36 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         else{
             mapFragment.getMapAsync(this);
 
+
         }
+        customerid = "";
+        getAssignedCustomer();
 
 
     }
 
     private void getAssignedCustomer() {
         String mechanicid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference assignedCustomerRef = FirebaseDatabase.getInstance().getReference().child("mechanic").child(mechanicid).child("userID");
+        DatabaseReference assignedCustomerRef = FirebaseDatabase.getInstance().getReference().child("customer_request");
         assignedCustomerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists() ){
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
+                    GeoFire geoFire = new GeoFire(reference);
+
+
+                    geoFire.removeLocation(customerid, new GeoFire.CompletionListener() {
+                        @Override
+                        public void onComplete(String key, DatabaseError error) {
+                            if (error != null) {
+                                System.err.println("There was an error removing the location from GeoFire: " + error);
+                            } else {
+                                System.out.println("Location Removed on server successfully!");
+                            }
+
+                        }
+                    });
 
                         customerid = snapshot.getValue().toString();
                         getAssignedCustomerPickUpPoint();
@@ -131,6 +151,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                 }else {
                     erasePolyLines();
                     customerid = "";
+                    customerInfo.setVisibility(View.GONE);
                     if (pickUpMarker != null) {
                         pickUpMarker.remove();
                     }
@@ -141,11 +162,12 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
                     }
-                    customerInfo.setVisibility(View.GONE);
+
                     mcustomerfname.setText("");
                     mcustomerlname.setText("");
                     mcustomernumber.setText("");
                     mCustomerProfileImage.setImageResource(R.drawable.default_user_image);
+
 
 
                 }}
@@ -166,10 +188,11 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists() && snapshot.getChildrenCount()>0){
                     Map<String,Object> map = (Map<String,Object>) snapshot.getValue();
-                    if(map.get("fname")!=null){
-
-                        mcustomerfname.setText(map.get("fname").toString());
-                    }
+                    assert map != null;
+//                    if(map.get("fname")!=null){
+//
+//                        mcustomerfname.setText(map.get("fname").toString());
+//                    }
                     if(map.get("lname")!=null){
 
                         mcustomerlname.setText(map.get("lname").toString());
@@ -197,9 +220,10 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     Marker pickUpMarker;
     private DatabaseReference customerpickuppointlocationref;
     private ValueEventListener customerpickuppointlocationrefListener;
+    private LatLng userLatLang;
 
     private void getAssignedCustomerPickUpPoint() {
-        customerpickuppointlocationref = FirebaseDatabase.getInstance().getReference().child("customer_request").child(customerid).child("l");
+        customerpickuppointlocationref = FirebaseDatabase.getInstance().getReference().child("customer_request").child(customerid).child("1");
 
         customerpickuppointlocationrefListener = customerpickuppointlocationref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -208,19 +232,35 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                     List<Object> map = (List<Object>) snapshot.getValue();
                     double locationLat = 0;
                     double locationLong = 0;
-                    if(map.get(0) !=  null){
+                    if(map.get(Integer.parseInt("0")) !=  null){
                         locationLat = Double.parseDouble(map.get(0).toString());
                     }
-                    if(map.get(1) !=  null){
+                    if(map.get(Integer.parseInt("1")) !=  null){
                         locationLong = Double.parseDouble(map.get(1).toString());
                     }
-                    LatLng userLatLang = new LatLng(locationLat, locationLong);
+                    userLatLang = new LatLng(locationLat, locationLong);
+                    if (pickUpMarker != null)
+                    {
+                        pickUpMarker.remove();
+                    }
+                    Location loc1 = new Location("");
+                    loc1.setLatitude(userLatLang.latitude);
+                    loc1.setLongitude(userLatLang.longitude);
 
-                    pickUpMarker = mMap.addMarker(new MarkerOptions().position(userLatLang).title("Pick Up Point"));
+                    Location loc2 = new Location("");
+                    loc2.setLatitude(lastLocation.getLatitude());
+                    loc2.setLongitude(lastLocation.getLongitude());
 
-                    getRouteToUser(userLatLang);
+                    float distance = loc1.distanceTo(loc2);
+                    if(distance<0.001){
+                        arrivedMechanic();
+                    }
+                    else{
+                        pickUpMarker = mMap.addMarker(new MarkerOptions().position(userLatLang).title("User's Location"));
 
+                        getRouteToUser(userLatLang);
 
+                    }
 
                 }
 
@@ -235,21 +275,19 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     }
 
     private void getRouteToUser(LatLng userLatLang) {
-        Routing routing = new Routing.Builder()
-                .travelMode(AbstractRouting.TravelMode.DRIVING)
-                .withListener(this)
-                .alternativeRoutes(false)
-                .waypoints(new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude()), userLatLang)
-                .build();
-        routing.execute();
+        if (userLatLang != null && lastLocation != null) {
+            Routing routing = new Routing.Builder()
+                    .travelMode(AbstractRouting.TravelMode.DRIVING)
+                    .withListener(this)
+                    .alternativeRoutes(false)
+                    .waypoints(new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), userLatLang)
+                    .build();
+            routing.execute();
+        }
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-    }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -288,7 +326,20 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
         switch (customerid){
             case "":
-                geoFireWorking.removeLocation(userid);
+                geoFireWorking.removeLocation(userid, new GeoFire.CompletionListener() {
+                    @Override
+                    public void onComplete(String key, DatabaseError error) {
+                        if (error != null) {
+                            System.err.println("There was an error removing the location from GeoFire: " + error);
+                        } else {
+                            System.out.println("Location Removed on server successfully!");
+                        }
+
+                    }
+                });
+
+
+
                 geoFireAvailable.setLocation(userid, new GeoLocation(location.getLatitude(), location.getLongitude())
                         , new GeoFire.CompletionListener() {
                             @Override
@@ -304,7 +355,18 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                 break;
 
             default:
-                geoFireAvailable.removeLocation(userid);
+
+                geoFireAvailable.removeLocation(userid, new GeoFire.CompletionListener() {
+                    @Override
+                    public void onComplete(String key, DatabaseError error) {
+                        if (error != null) {
+                            System.err.println("There was an error removing the location from GeoFire: " + error);
+                        } else {
+                            System.out.println("Location Removed on server successfully!");
+                        }
+
+                    }
+                });
                 geoFireWorking.setLocation(userid, new GeoLocation(location.getLatitude(), location.getLongitude())
                         , new GeoFire.CompletionListener() {
                             @Override
@@ -313,6 +375,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                                     System.err.println("There was an error saving the location to GeoFire: " + error);
                                 } else {
                                     System.out.println("Location saved on server successfully!");
+
                                 }
 
                             }
@@ -326,6 +389,69 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
 
+    }
+    private Long getCurrentTimestamp() {
+        Long timestamp = System.currentTimeMillis()/1000;
+        return timestamp;
+    }
+
+    private void arrivedMechanic(){
+
+        erasePolyLines();
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customer_request");
+        GeoFire geoFire = new GeoFire(ref);
+        geoFire.removeLocation(customerid, new GeoFire.CompletionListener() {
+            @Override
+            public void onComplete(String key, DatabaseError error) {
+                if (error != null) {
+                    System.err.println("There was an error removing the location from GeoFire: " + error);
+                } else {
+                    System.out.println("Location Removed on server successfully!");
+                }
+
+            }
+        });
+
+        customerid="";
+
+
+        if(pickUpMarker != null){
+            pickUpMarker.remove();
+        }
+        if (customerpickuppointlocationrefListener != null){
+            customerpickuppointlocationref.removeEventListener(customerpickuppointlocationrefListener);
+        }
+        customerInfo.setVisibility(View.GONE);
+        mcustomerfname.setText("");
+        mcustomerlname.setText("");
+        mcustomernumber.setText("");
+        mCustomerProfileImage.setImageResource(R.drawable.default_user_image);
+        recordBreakdown();
+        finish();
+        startActivity(new Intent(MechanicMapsActivity.this,MechanicBreakdownFeedbackActivity.class));
+
+    }
+
+    private void recordBreakdown(){
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference historyRef = FirebaseDatabase.getInstance().getReference().child("breakdowns");
+        String requestId = historyRef.push().getKey();
+
+
+        HashMap map = new HashMap();
+        map.put("mechanic", userId);
+        map.put("customer", customerid);
+        map.put("timestamp", getCurrentTimestamp());
+        map.put("userlocation_lat", userLatLang.latitude);
+        map.put("userlocation_lng", userLatLang.longitude);
+
+        assert requestId != null;
+        historyRef.child(requestId).updateChildren(map);
     }
 
     @Override
@@ -381,17 +507,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("mechanicavailable");
-        GeoFire geoFire = new GeoFire(reference);
-        geoFire.removeLocation(userid);
 
-
-
-    }
 
     @Override
     public void onRoutingFailure(RouteException e) {

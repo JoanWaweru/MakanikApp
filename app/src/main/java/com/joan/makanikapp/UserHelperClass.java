@@ -1,17 +1,26 @@
 package com.joan.makanikapp;
 
 public class UserHelperClass {
-    String fname,lname,email,phoneno,password;
+    String fname,lname,email,phoneno,password, status;
 
     public UserHelperClass() {
     }
 
-    public UserHelperClass(String fname, String lname, String email, String phoneno, String password) {
+    public UserHelperClass(String fname, String lname, String email, String phoneno, String password, String status) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.phoneno = phoneno;
         this.password = password;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFname() {

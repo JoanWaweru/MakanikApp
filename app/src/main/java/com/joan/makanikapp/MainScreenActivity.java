@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainScreenActivity extends AppCompatActivity implements View.OnClickListener {
-    Button editProfile;
+
 
     FirebaseDatabase rootnode;
     DatabaseReference reference;
@@ -88,12 +88,12 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         Intent i;
         switch (v.getId()){
             case R.id.callMechanicCard:
-                i = new Intent(this,UserIncidentPageActivity.class);
+                i = new Intent(this,UserMapsActivity.class);
                 startActivity(i);
                 break;
 
             case R.id.viewProfileCard:
-                i = new Intent(this,ViewProfileActivity.class);
+                i = new Intent(this,MechanicMapsActivity.class);
                 startActivity(i);
                 break;
 

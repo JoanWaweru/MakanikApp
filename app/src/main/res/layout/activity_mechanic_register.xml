@@ -140,18 +140,18 @@
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputMechanicCertNumber"
-                        style="@style/parent"
-                        android:layout_marginTop="@dimen/loginViewsMargin">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/textInputMechanicCertNumber"-->
+<!--                        style="@style/parent"-->
+<!--                        android:layout_marginTop="@dimen/loginViewsMargin">-->
 
-                        <EditText
-                            android:id="@+id/editTextMechanicCertNumber"
-                            style="@style/modifiedEditText"
-                            android:hint="@string/mechanic_registration_number"
-                            android:inputType="text"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <EditText-->
+<!--                            android:id="@+id/editTextMechanicCertNumber"-->
+<!--                            style="@style/modifiedEditText"-->
+<!--                            android:hint="@string/mechanic_registration_number"-->
+<!--                            android:inputType="text"-->
+<!--                            android:maxLines="1" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <!--                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
                     <!--                        android:id="@+id/cirRegisterButton"-->
