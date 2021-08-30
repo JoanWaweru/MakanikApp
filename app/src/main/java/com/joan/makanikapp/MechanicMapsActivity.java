@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MechanicMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
+public class MechanicMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener{
 
     private GoogleMap mMap;
     GoogleApiClient googleApiClient;
@@ -122,9 +122,9 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists() ){
 
-                        customerid = snapshot.getValue().toString();
-                        getAssignedCustomerPickUpPoint();
-                        getAssignedCustomerInformation();
+                    customerid = snapshot.getValue().toString();
+                    getAssignedCustomerPickUpPoint();
+                    getAssignedCustomerInformation();
 
 
 
@@ -145,7 +145,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                     mcustomerfname.setText("");
                     mcustomerlname.setText("");
                     mcustomernumber.setText("");
-                    mCustomerProfileImage.setImageResource(R.drawable.ic_view_my_profile_icon);
+                    mCustomerProfileImage.setImageResource(R.drawable.default_user_image);
 
 
                 }}
@@ -220,8 +220,6 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
                     getRouteToUser(userLatLang);
 
-
-
                 }
 
             }
@@ -268,7 +266,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     protected synchronized void buildGoogleApiClient(){
         googleApiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         googleApiClient.connect();
-        
+
     }
 
     @Override
@@ -446,21 +444,3 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         polylines.clear();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

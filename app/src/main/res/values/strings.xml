@@ -56,6 +56,7 @@
     <string name="about_us_description">MakanikApp is an Android application that connects drivers or vehicle owners to mechanics on the road.\nIt is developed by two students from Strathmore University, Victoria Nyamai and Joan Waweru.</string>
     <string name="back_to_settings">Back to Settings</string>
     <string name="welcome_to_view_my_breakdown_history_activity">Welcome To View My Breakdown History Activity</string>
+    <string name="welcome_to_your_requests_page">Welcome to your requests page</string>
     <!--    <string name="title_activity_mechanic_maps">Mechanic Maps</string>-->
     <!--    <string name="title_activity_user_maps">User Maps</string>-->
     <!--    <string name="view_requests">View Requests</string>-->

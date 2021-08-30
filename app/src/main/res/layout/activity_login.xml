@@ -135,6 +135,21 @@
                 android:onClick="loginClick">
 
             </Button>
+
+<!--            <Button-->
+
+<!--                android:id="@+id/button_login2"-->
+<!--                android:text="Log In As Mechanic"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="30sp"-->
+<!--                android:textAlignment="center"-->
+<!--                style="@style/parent"-->
+<!--                android:background="@color/whiteTextColor"-->
+<!--                android:textColor="@color/themeColor"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:onClick="loginClick"/>-->
+
             <TextView
                 style="@style/parent"
                 android:layout_marginTop="30dp"

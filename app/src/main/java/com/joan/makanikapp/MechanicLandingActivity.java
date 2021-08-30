@@ -20,15 +20,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MechanicLandingActivity extends AppCompatActivity implements View.OnClickListener {
-    Button editProfile;
+    //Button editProfile;
 
     FirebaseDatabase rootnode;
     DatabaseReference reference;
-    private String userID;
+    private String mechanicID;
     FirebaseAuth mAuth;
-    FirebaseUser user;
+    FirebaseUser mechanic;
 
-    public CardView callMechanic,viewProfile,signAsMechanic,logout;
+    public CardView viewRequest,viewProfile,signAsMechanic,logout;
     private TextView welcome;
 
 
@@ -37,37 +37,35 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mechanic_landing);
 
-        callMechanic = findViewById(R.id.callMechanicCard);
-        viewProfile = findViewById(R.id.viewProfileCard);
+        viewRequest = findViewById(R.id.callViewRequestsCard);
+        viewProfile = findViewById(R.id.viewMechanicProfileCard);
         signAsMechanic = findViewById(R.id.signAsMechanicCard);
-        logout = findViewById(R.id.logoutCard);
+        logout = findViewById(R.id.logoutMechanicCard);
 
-        callMechanic.setOnClickListener(this);
+        viewRequest.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
         signAsMechanic.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-        editProfile = findViewById(R.id.editProfile);
+        //editProfile = findViewById(R.id.button_edit_profile);
 
-
-
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("user");
-        userID = user.getUid();
+        mechanic = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("mechanic");
+        mechanicID = mechanic.getUid();
 
         TextView welcome = findViewById(R.id.welcome);
 
 
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(mechanicID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserHelperClass userProfile = snapshot.getValue(UserHelperClass.class);
+                 UserHelperClass userProfile = snapshot.getValue(UserHelperClass.class);
 
                 if (userProfile != null) {
                     String firstname = userProfile.fname;
 
-                    welcome.setText("Welcome, "+firstname);
+                    welcome.setText("Welcome, Mechanic "+firstname);
 
                 }
 
@@ -87,8 +85,8 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         Intent i;
         switch (v.getId()){
-            case R.id.callMechanicCard:
-                i = new Intent(this,UserIncidentPageActivity.class);
+            case R.id.callViewRequestsCard:
+                i = new Intent(this,ViewRequestsActivity.class);
                 startActivity(i);
                 break;
 
@@ -102,10 +100,10 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
                 startActivity(i);
                 break;
 
-            case R.id.logoutCard:
+            case R.id.logoutMechanicCard:
                 mAuth = FirebaseAuth.getInstance();
                 mAuth.signOut();
-                i = new Intent(this,LoginActivity.class);
+                i = new Intent(this,MechanicLoginActivity.class);
                 startActivity(i);
                 finish();
                 break;
