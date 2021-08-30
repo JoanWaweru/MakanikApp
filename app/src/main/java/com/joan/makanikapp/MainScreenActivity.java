@@ -48,7 +48,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         settings.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-        editProfile = findViewById(R.id.button_edit_profile);
+        //editProfile = findViewById(R.id.button_edit_profile);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user");

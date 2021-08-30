@@ -28,6 +28,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="view_requests">View Requests</string>
+    <string name="about_us">About Us</string>
+    <string name="menu_call_mechanic">Call Mechanic</string>
+    <string name="back_to_home_screen">Back To Homescreen</string>
 
     <string name="log_in_as_user">Log In As User</string>
     <string name="confirm_payment">Confirm Payment</string>
@@ -46,4 +49,12 @@
     <string name="mechanic_registration_number">Mechanic Registration Number</string>
     <string name="makanikappNavTitle">MakanikApp</string>
     <string name="makanikap_gmail_com">makanikap@gmail.com</string>
+    <string name="breakdown_nhistory">Breakdown\nHistory</string>
+    <string name="contact_nus">Contact\nUs</string>
+    <string name="about_us_description">MakanikApp is an Android application that connects drivers or vehicle owners to mechanics on the road.\nIt is developed by two students from Strathmore University, Victoria Nyamai and Joan Waweru.</string>
+    <string name="back_to_settings">Back to Settings</string>
+    <string name="welcome_to_view_my_breakdown_history_activity">Welcome To View My Breakdown History Activity</string>
+    <string name="welcome_to_your_requests_page">Welcome to your requests page</string>
+    <string name="settings">Settings</string>
+    <string name="quick_ninformation">Quick\nInformation</string>
 </resources>

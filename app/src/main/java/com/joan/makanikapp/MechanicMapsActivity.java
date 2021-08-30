@@ -126,8 +126,9 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists() ){
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
-                    GeoFire geoFire = new GeoFire(reference);
+                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("customer_request");
+                    GeoFire geoFire = new GeoFire(reference1);
+                    customerid = snapshot.getValue().toString();
 
 
                     geoFire.removeLocation(customerid, new GeoFire.CompletionListener() {
@@ -142,15 +143,17 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                         }
                     });
 
-                        customerid = snapshot.getValue().toString();
-                        getAssignedCustomerPickUpPoint();
+
+
                         getAssignedCustomerInformation();
+                        //changeTables();
 
 
 
                 }else {
                     erasePolyLines();
                     customerid = "";
+                    //changeTables();
                     customerInfo.setVisibility(View.GONE);
                     if (pickUpMarker != null) {
                         pickUpMarker.remove();
@@ -189,10 +192,10 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                 if(snapshot.exists() && snapshot.getChildrenCount()>0){
                     Map<String,Object> map = (Map<String,Object>) snapshot.getValue();
                     assert map != null;
-//                    if(map.get("fname")!=null){
-//
-//                        mcustomerfname.setText(map.get("fname").toString());
-//                    }
+                    if(map.get("fname")!=null){
+
+                        mcustomerfname.setText(map.get("fname").toString());
+                    }
                     if(map.get("lname")!=null){
 
                         mcustomerlname.setText(map.get("lname").toString());
@@ -201,11 +204,9 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
                         mcustomerfname.setText(map.get("phoneno").toString());
                     }
-//                    if(map.get("profileImageUrl")!=null){
-//                        mProfileImageUrl = map.get("profileImageUrl").toString();
-//                        Glide.with(getApplication()).load(mProfileImageUrl).into(mCustomerProfileImage);
-//
-//                    }
+
+                    getAssignedCustomerPickUpPoint();
+
                 }
 
             }
@@ -223,7 +224,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
     private LatLng userLatLang;
 
     private void getAssignedCustomerPickUpPoint() {
-        customerpickuppointlocationref = FirebaseDatabase.getInstance().getReference().child("customer_request").child(customerid).child("1");
+        customerpickuppointlocationref = FirebaseDatabase.getInstance().getReference().child("customer_request").child(customerid).child("l");
 
         customerpickuppointlocationrefListener = customerpickuppointlocationref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -315,6 +316,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference referenceAvailable = FirebaseDatabase.getInstance().getReference("mechanicavailable");
 
@@ -340,7 +342,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
 
-                geoFireAvailable.setLocation(userid, new GeoLocation(location.getLatitude(), location.getLongitude())
+                geoFireAvailable.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
                         , new GeoFire.CompletionListener() {
                             @Override
                             public void onComplete(String key, DatabaseError error) {
@@ -367,7 +369,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
                     }
                 });
-                geoFireWorking.setLocation(userid, new GeoLocation(location.getLatitude(), location.getLongitude())
+                geoFireWorking.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
                         , new GeoFire.CompletionListener() {
                             @Override
                             public void onComplete(String key, DatabaseError error) {
@@ -387,13 +389,84 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
 
-
-
     }
     private Long getCurrentTimestamp() {
         Long timestamp = System.currentTimeMillis()/1000;
         return timestamp;
     }
+
+//    private void changeTables(){
+//        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference referenceAvailable = FirebaseDatabase.getInstance().getReference("mechanicavailable");
+//
+//        DatabaseReference referenceWorking = FirebaseDatabase.getInstance().getReference("mechanics_working");
+//        GeoFire geoFireWorking = new GeoFire(referenceWorking);
+//        GeoFire geoFireAvailable = new GeoFire(referenceAvailable);
+//
+//
+//
+//        switch (customerid){
+//            case "":
+//                geoFireWorking.removeLocation(userid, new GeoFire.CompletionListener() {
+//                    @Override
+//                    public void onComplete(String key, DatabaseError error) {
+//                        if (error != null) {
+//                            System.err.println("There was an error removing the location from GeoFire: " + error);
+//                        } else {
+//                            System.out.println("Location Removed on server successfully!");
+//                        }
+//
+//                    }
+//                });
+//
+//
+//
+//                geoFireAvailable.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
+//                        , new GeoFire.CompletionListener() {
+//                            @Override
+//                            public void onComplete(String key, DatabaseError error) {
+//                                if (error != null) {
+//                                    System.err.println("There was an error saving the location to GeoFire: " + error);
+//                                } else {
+//                                    System.out.println("Location saved on server successfully!");
+//                                }
+//
+//                            }
+//                        });
+//                break;
+//
+//            default:
+//
+//                geoFireAvailable.removeLocation(userid, new GeoFire.CompletionListener() {
+//                    @Override
+//                    public void onComplete(String key, DatabaseError error) {
+//                        if (error != null) {
+//                            System.err.println("There was an error removing the location from GeoFire: " + error);
+//                        } else {
+//                            System.out.println("Location Removed on server successfully!");
+//                        }
+//
+//                    }
+//                });
+//                geoFireWorking.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
+//                        , new GeoFire.CompletionListener() {
+//                            @Override
+//                            public void onComplete(String key, DatabaseError error) {
+//                                if (error != null) {
+//                                    System.err.println("There was an error saving the location to GeoFire: " + error);
+//                                } else {
+//                                    System.out.println("Location saved on server successfully!");
+//
+//                                }
+//
+//                            }
+//                        });
+//                break;
+//        }
+//
+//
+//
+//    }
 
     private void arrivedMechanic(){
 

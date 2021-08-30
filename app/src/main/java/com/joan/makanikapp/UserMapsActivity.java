@@ -171,7 +171,13 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             requestBol = false;
 
             geoQuery.removeAllListeners();
-            mechaniclocationref.removeEventListener(mechanicLocationListener);
+            if (mechanicLocationListener != null) {
+
+
+                mechaniclocationref.removeEventListener(mechanicLocationListener);
+
+
+            }
 
             if (foundMechanicID!=null){
                 DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
@@ -254,10 +260,12 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
 
                     DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
+
+
                     String customerid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    HashMap hashMap = new HashMap();
-                    hashMap.put("userID",customerid);
-                    mechanicref.updateChildren(hashMap);
+//                    HashMap hashMap = new HashMap();
+//                    hashMap.put("userID",customerid);
+//                    mechanicref.updateChildren(hashMap);
 
 
                     call_mechanic.setText("Finding Mechanic's Location...");
@@ -300,7 +308,8 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
     private Marker driverMarker;
     private void getMechanicLocation() {
-        mechaniclocationref= FirebaseDatabase.getInstance().getReference().child("mechanics_working").child(foundMechanicID).child("1");
+        mechaniclocationref= FirebaseDatabase.getInstance().getReference().child("mechanics_working").child(foundMechanicID).child("l");
+
 
         mechanicLocationListener = mechaniclocationref.addValueEventListener(new ValueEventListener() {
             @Override

@@ -48,32 +48,7 @@ public class LoginActivity extends AppCompatActivity{
             forgotpassword = findViewById(R.id.button_forgotpassword);
             rememberMe = findViewById(R.id.rememberMe);
 
-//            //get an instance of firebase authentication
-//            mAuth = FirebaseAuth.getInstance();
-//            //get currently logged in user
-//            FirebaseUser currentUser = mAuth.getCurrentUser();
-//            if (currentUser == null) {
-//                // if user is not logged in refer him/he ro the register activity
-//                Intent loginIntent = new Intent(MainActivity.this, RegisterActivity.class);
-//                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(loginIntent);
-//            }
-//        }
-//    @Override
-//    protected void onStart() {
-//        //
-//        super.onStart();
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        //check to see if the user is logged in
-//        if (currentUser != null) {
-//            //if user is logged in populate the Ui With card views on the adapter
-//            updateUI(currentUser);
-//            // Listen to the events
-//            adapter.startListening();
 
-//            mAuth.getCurrentUser();
-//        }
-//    }
         }
 
 

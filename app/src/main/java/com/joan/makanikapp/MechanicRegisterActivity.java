@@ -90,7 +90,7 @@ public class MechanicRegisterActivity extends AppCompatActivity {
         String phoneno = phone_number.getText().toString();
         String userpassword = password.getText().toString();
 
-        String approved = "no";
+        String approved = "NO";
         mAuth = FirebaseAuth.getInstance();
 
         if(fname.isEmpty()){
