@@ -16,7 +16,7 @@ public class RateMechanicActivity extends AppCompatActivity {
     private RatingBar ratingBar;
     private EditText comment;
     private DatabaseReference breakdownsHistory;
-    String rideID;
+
 
 
     @Override
@@ -27,11 +27,10 @@ public class RateMechanicActivity extends AppCompatActivity {
         comment = findViewById(R.id.leave_a_comment_edittext);
         displayUserRelatedObjects();
         Intent intent = getIntent();
-        rideID = intent.getStringExtra(UserMapsActivity.EXTRA_MESSAGE);
     }
 
     private void displayUserRelatedObjects() {
-        breakdownsHistory = FirebaseDatabase.getInstance().getReference().child("breakdowns").child(rideID);
+        breakdownsHistory = FirebaseDatabase.getInstance().getReference().child("breakdowns");
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override

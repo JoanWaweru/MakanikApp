@@ -87,6 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         String emailaddress = email.getText().toString();
         String phoneno = phone_number.getText().toString();
         String userpassword = password.getText().toString();
+        String status = "ACTIVE";
         mAuth = FirebaseAuth.getInstance();
 
         if(fname.isEmpty()){
@@ -137,7 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()){
-                            UserHelperClass helperClass = new UserHelperClass(fname,lname,emailaddress,phoneno,userpassword);
+                            UserHelperClass helperClass = new UserHelperClass(fname,lname,emailaddress,phoneno,userpassword,status);
                             FirebaseDatabase.getInstance().getReference("user")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {

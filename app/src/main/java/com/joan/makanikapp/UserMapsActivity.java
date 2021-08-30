@@ -67,9 +67,8 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
     private String foundMechanicID;
     private Boolean requestBol = false;
     private Marker pickupMarker;
-    private String rideId;
-    public static final String EXTRA_MESSAGE
-            = "com.example.android.makanikapp.extra.MESSAGE";
+
+
     SupportMapFragment mapFragment;
 
 
@@ -99,7 +98,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         call_mechanic = findViewById(R.id.call_mechanic);
 
-        //rideId = getIntent().getExtras().getString("rideId");
+
 
 
     }
@@ -165,11 +164,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
 
-    }
 
     public void call_mechanic(View view) {
         if(requestBol){
@@ -193,7 +188,18 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
             GeoFire geoFire = new GeoFire(reference);
 
-            geoFire.removeLocation(userid);
+
+            geoFire.removeLocation(userid, new GeoFire.CompletionListener() {
+                @Override
+                public void onComplete(String key, DatabaseError error) {
+                    if (error != null) {
+                        System.err.println("There was an error removing the location from GeoFire: " + error);
+                    } else {
+                        System.out.println("Location Removed on server successfully!");
+                    }
+
+                }
+            });
             if(pickupMarker!= null){
                 pickupMarker.remove();
             }
@@ -223,73 +229,13 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     });
             pick_up_point = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
             pickupMarker =mMap.addMarker(new MarkerOptions().position(pick_up_point).title("Pick Up Point"));
-            call_mechanic.setText("Getting your Mechanic...");
+            call_mechanic.setText("Getting a Mechanic...");
             getClosestMechanic();
 
         }
 
     }
-//    List<Marker> markerList = new ArrayList<Marker>();
-//    private void mechanicsAround(){
-//        DatabaseReference mechanicLocation = FirebaseDatabase.getInstance().getReference().child("mechanicavailable");
-//        GeoFire geoFire = new GeoFire(mechanicLocation);
-//        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude()),10000);
-//        geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
-//            @Override
-//            public void onKeyEntered(String key, GeoLocation location) {
-//                for(Marker marker: markerList){
-//                    if(marker.getTag().equals(key)){
-//                        return;
-//                    }
-//                }
-//                LatLng mechaniclocation = new LatLng(location.latitude,location.longitude);
-//                Marker mechanicmarker = mMap.addMarker(new MarkerOptions().position(mechaniclocation).title("Mechanic"));
-//                mechanicmarker.setTag(key);
-//                markerList.add(mechanicmarker);
-//
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onKeyExited(String key) {
-//                for(Marker marker: markerList){
-//                    if(marker.getTag().equals(key)){
-//                        marker.remove();
-//                        markerList.remove(marker);
-//                        return;
-//                    }
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onKeyMoved(String key, GeoLocation location) {
-//                for(Marker marker: markerList){
-//                    if(marker.getTag().equals(key)){
-//                        marker.setPosition(new LatLng(location.latitude,location.longitude));
-//                        return;
-//                    }
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onGeoQueryReady() {
-//
-//            }
-//
-//            @Override
-//            public void onGeoQueryError(DatabaseError error) {
-//
-//            }
-//        });
-//
-//
-//
-//
-//    }
+
     GeoQuery geoQuery;
 
 
@@ -305,7 +251,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                 if(!foundMechanic && requestBol){
                     foundMechanic = true;
                     foundMechanicID = key;
-                    //Toast.makeText(UserMapsActivity.this,"Mechanic found",Toast.LENGTH_SHORT).show();
+
 
                     DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
                     String customerid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -313,8 +259,9 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     hashMap.put("userID",customerid);
                     mechanicref.updateChildren(hashMap);
 
-                    getMechanicLocation();
+
                     call_mechanic.setText("Finding Mechanic's Location...");
+                    getMechanicLocation();
 
                 }
 
@@ -334,9 +281,9 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             @Override
             public void onGeoQueryReady() {
                 if(!foundMechanic && requestBol){
-                    radius++;
-                    getClosestMechanic();
 
+                        radius++;
+                        getClosestMechanic();
 
                 }
 
@@ -353,7 +300,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
     private Marker driverMarker;
     private void getMechanicLocation() {
-        mechaniclocationref= FirebaseDatabase.getInstance().getReference().child("mechanics_working").child(foundMechanicID).child("l");
+        mechaniclocationref= FirebaseDatabase.getInstance().getReference().child("mechanics_working").child(foundMechanicID).child("1");
 
         mechanicLocationListener = mechaniclocationref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -362,7 +309,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     List<Object> map = (List<Object>) snapshot.getValue();
                     double locationLat = 0;
                     double locationLong = 0;
-                    call_mechanic.setText("Found Mechanic's Location...");
+                    call_mechanic.setText("Found Mechanic's Location.");
                     if(map.get(0) !=  null){
                         locationLat = Double.parseDouble(map.get(0).toString());
                     }
@@ -383,8 +330,9 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     loc2.setLongitude(mechanicLatLang.longitude);
 
                     float distance = loc1.distanceTo(loc2);
-                    if(distance<100){
+                    if(distance<0.001){
                         call_mechanic.setText("Mechanic is Here");
+                        finish();
                         startActivity(new Intent(UserMapsActivity.this, RateMechanicActivity.class));
 
 
