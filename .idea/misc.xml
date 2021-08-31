@@ -30,13 +30,16 @@
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_main_screen.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_mechanic_landing.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_mechanic_login.xml" value="0.1" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_mechanic_register.xml" value="0.10643115942028986" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.10914855072463768" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_payment.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_request_main.xml" value="0.17" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_settings.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_user_incident_page.xml" value="0.10914855072463768" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_user_incident_page2.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_user_maps.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_view_breakdown_history.xml" value="0.1" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_view_request_history.xml" value="0.10643115942028986" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_view_requests.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/activity_viewprofile.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/app_bar_navigation_drawer.xml" value="0.18645833333333334" />
@@ -49,6 +52,7 @@
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/fragment_home.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/item_option.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/nav_header_navigation_drawer.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/layout/request_item.xml" value="0.10643115942028986" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/JOAN/StudioProjects/MakanikApp/app/src/main/res/menu/navigation_drawer.xml" value="0.18645833333333334" />
       </map>

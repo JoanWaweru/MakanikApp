@@ -46,10 +46,9 @@
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
                     android:text="Register to \nWork With\n Us!"
-                    android:textColor="@color/whiteTextColor"
-                    android:layout_marginLeft="60dp"/>
+                    android:textColor="@color/whiteTextColor" />
 
                 <ImageView
                     android:layout_width="120dp"

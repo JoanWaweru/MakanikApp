@@ -86,7 +86,7 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
         Intent i;
         switch (v.getId()){
             case R.id.callViewRequestsCard:
-                i = new Intent(this,ViewRequestsActivity.class);
+                i = new Intent(this,RequestMainActivity.class);
                 startActivity(i);
                 break;
 

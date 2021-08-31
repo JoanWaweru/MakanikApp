@@ -56,6 +56,8 @@
         <activity android:name=".MechanicViewProfileActivity" />
         <activity android:name=".EditingMechanicProfileActivity" />
         <activity android:name=".BreakdownList"/>
+        <activity android:name=".RequestList"/>
+        <activity android:name=".RequestMainActivity"/>
 
         <activity
             android:name=".PaymentActivity"
