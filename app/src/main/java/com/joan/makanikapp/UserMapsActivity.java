@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.joan.makanikapp.databinding.ActivityDriverMapsBinding;
 import com.joan.makanikapp.databinding.ActivityUserMapsBinding;
@@ -166,6 +168,8 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
 
 
+    private DatabaseReference ridestuff;
+    private ValueEventListener ridestufflistener;
     public void call_mechanic(View view) {
         if(requestBol){
             requestBol = false;
@@ -180,8 +184,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             }
 
             if (foundMechanicID!=null){
-                DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
-                mechanicref.setValue(true);
+
                 foundMechanicID = null;
 
 
@@ -191,11 +194,10 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
 
             String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("customer_request");
-            GeoFire geoFire = new GeoFire(reference);
+            DatabaseReference references = FirebaseDatabase.getInstance().getReference("customer_request");
+            GeoFire geoFire1 = new GeoFire(references);
 
-
-            geoFire.removeLocation(userid, new GeoFire.CompletionListener() {
+            geoFire1.removeLocation(userid, new GeoFire.CompletionListener() {
                 @Override
                 public void onComplete(String key, DatabaseError error) {
                     if (error != null) {
@@ -209,9 +211,26 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             if(pickupMarker!= null){
                 pickupMarker.remove();
             }
+
+            ridestuff = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID).child("customerRideId");
+            ridestufflistener = ridestuff.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    if(snapshot.exists() ){
+                        snapshot.getRef().removeValue();
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
+
             call_mechanic.setText("Call Mechanic");
-
-
 
 
         }
@@ -248,32 +267,33 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
     private void getClosestMechanic() {
         DatabaseReference mechanicLocation = FirebaseDatabase.getInstance().getReference().child("mechanicavailable");
+
         GeoFire geoFire = new GeoFire(mechanicLocation);
-        geoQuery = geoFire.queryAtLocation(new GeoLocation(pick_up_point.latitude,pick_up_point.longitude),radius);
+
+        geoQuery = geoFire.queryAtLocation(new GeoLocation(pick_up_point.latitude, pick_up_point.longitude), radius);
         geoQuery.removeAllListeners();
+
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoLocation location) {
-                if(!foundMechanic && requestBol){
+
+                if (!foundMechanic && requestBol) {
                     foundMechanic = true;
                     foundMechanicID = key;
 
-
-                    DatabaseReference mechanicref = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID);
-
-
-                    String customerid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                    HashMap hashMap = new HashMap();
-//                    hashMap.put("userID",customerid);
-//                    mechanicref.updateChildren(hashMap);
+                    DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference().child("mechanic").child(foundMechanicID).child("customerRideId");
+                    String customerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    HashMap map = new HashMap();
+                    map.put("customerRideId", customerId);
+                    driverRef.updateChildren(map);
 
 
-                    call_mechanic.setText("Finding Mechanic's Location...");
+                    Toast.makeText(UserMapsActivity.this,"Waiting to get location ",Toast.LENGTH_LONG).show();
+
+
+                    call_mechanic.setText("Looking for Driver Location...");
                     getMechanicLocation();
-
                 }
-
-
             }
 
             @Override
@@ -288,13 +308,11 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
             @Override
             public void onGeoQueryReady() {
-                if(!foundMechanic && requestBol){
 
-                        radius++;
-                        getClosestMechanic();
-
+                if (!foundMechanic){
+                    radius++;
+                    getClosestMechanic();
                 }
-
             }
 
             @Override
@@ -303,6 +321,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
             }
         });
     }
+
     private DatabaseReference mechaniclocationref;
     private ValueEventListener mechanicLocationListener;
 
@@ -339,16 +358,37 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     loc2.setLongitude(mechanicLatLang.longitude);
 
                     float distance = loc1.distanceTo(loc2);
-                    if(distance<0.001){
+                    if(distance<100){
                         call_mechanic.setText("Mechanic is Here");
-                        finish();
+                        String customerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customer_request");
+                        GeoFire geoFire = new GeoFire(ref);
+                        geoFire.removeLocation(customerId, new GeoFire.CompletionListener() {
+                            @Override
+                            public void onComplete(String key, DatabaseError error) {
+                                if (error != null) {
+                                    System.err.println("There was an error removing the location from GeoFire: " + error);
+                                } else {
+                                    System.out.println("Location Removed on server successfully!");
+                                }
+
+                            }
+                        });
+
+
+
                         startActivity(new Intent(UserMapsActivity.this, RateMechanicActivity.class));
+
+
 
 
 
                     }
                     else {
                         call_mechanic.setText("Mechanic Found: "+String.valueOf(distance));
+
+
 
                     }
 

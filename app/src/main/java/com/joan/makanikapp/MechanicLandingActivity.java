@@ -102,13 +102,12 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.logoutMechanicCard:
-
-                String mechanicid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("mechanicavailable");
+                String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("mechanics_working");
                 GeoFire geoFire = new GeoFire(reference);
 
 
-                geoFire.removeLocation(mechanicid, new GeoFire.CompletionListener() {
+                geoFire.removeLocation(userid, new GeoFire.CompletionListener() {
                     @Override
                     public void onComplete(String key, DatabaseError error) {
                         if (error != null) {
@@ -119,6 +118,7 @@ public class MechanicLandingActivity extends AppCompatActivity implements View.O
 
                     }
                 });
+
 
                 mAuth = FirebaseAuth.getInstance();
                 mAuth.signOut();

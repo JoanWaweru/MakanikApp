@@ -26,16 +26,22 @@ public class RateMechanicActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.rating_bar);
         comment = findViewById(R.id.leave_a_comment_edittext);
         displayUserRelatedObjects();
-        Intent intent = getIntent();
+
     }
 
     private void displayUserRelatedObjects() {
-        breakdownsHistory = FirebaseDatabase.getInstance().getReference().child("breakdowns");
+        breakdownsHistory = FirebaseDatabase.getInstance().getReference().child("ratings");
+        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 breakdownsHistory.child("rating").setValue(rating);
+                breakdownsHistory.child("customerid").setValue(userid);
+
+
                 ratingBar.setRating(rating);
 
 
@@ -47,6 +53,9 @@ public class RateMechanicActivity extends AppCompatActivity {
     }
 
     public void submitRating(View view) {
+        startActivity(new Intent(RateMechanicActivity.this, PaymentActivity.class));
+
+
 
     }
 }

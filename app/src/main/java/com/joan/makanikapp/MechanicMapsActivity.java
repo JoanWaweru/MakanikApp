@@ -52,9 +52,13 @@ import com.joan.makanikapp.databinding.ActivityUserMapsBinding;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class MechanicMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
@@ -101,8 +105,8 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         mcustomerfname = findViewById(R.id.customer_fname);
         mcustomerlname = findViewById(R.id.customer_lname);
         mcustomernumber = findViewById(R.id.customer_number);
-        customerInfo = (LinearLayout) findViewById(R.id.customer_information);
-        mCustomerProfileImage = (ImageView) findViewById(R.id.customer_profile_image);
+        customerInfo = findViewById(R.id.customer_information);
+        mCustomerProfileImage = findViewById(R.id.customer_profile_image);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(MechanicMapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_CODE);
@@ -114,69 +118,38 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
         }
         customerid = "";
+
+
         getAssignedCustomer();
 
 
     }
 
     private void getAssignedCustomer() {
-        String mechanicid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference assignedCustomerRef = FirebaseDatabase.getInstance().getReference().child("customer_request");
+        String mechanicId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference assignedCustomerRef = FirebaseDatabase.getInstance().getReference().child("mechanic").child(mechanicId).child("customerRideId");
         assignedCustomerRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if(snapshot.exists() ){
-                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("customer_request");
-                    GeoFire geoFire = new GeoFire(reference1);
-                    customerid = snapshot.getValue().toString();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    customerid = dataSnapshot.getValue().toString();
 
+                    getAssignedCustomerInformation();
+                    getAssignedCustomerPickUpPoint();
+                } else {
 
-                    geoFire.removeLocation(customerid, new GeoFire.CompletionListener() {
-                        @Override
-                        public void onComplete(String key, DatabaseError error) {
-                            if (error != null) {
-                                System.err.println("There was an error removing the location from GeoFire: " + error);
-                            } else {
-                                System.out.println("Location Removed on server successfully!");
-                            }
-
-                        }
-                    });
-
-
-
-                        getAssignedCustomerInformation();
-                        //changeTables();
-
-
-
-                }else {
-                    erasePolyLines();
                     customerid = "";
-                    //changeTables();
-                    customerInfo.setVisibility(View.GONE);
                     if (pickUpMarker != null) {
                         pickUpMarker.remove();
                     }
-                    if (customerpickuppointlocationrefListener != null) {
-
-
+                    if (customerpickuppointlocationrefListener != null){
                         customerpickuppointlocationref.removeEventListener(customerpickuppointlocationrefListener);
-
-
                     }
-
-                    mcustomerfname.setText("");
-                    mcustomerlname.setText("");
-                    mcustomernumber.setText("");
-                    mCustomerProfileImage.setImageResource(R.drawable.ic_view_my_profile_icon);
-
-
-
-                }}
+                }
+            }
 
             @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -191,7 +164,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists() && snapshot.getChildrenCount()>0){
                     Map<String,Object> map = (Map<String,Object>) snapshot.getValue();
-                    assert map != null;
+
                     if(map.get("fname")!=null){
 
                         mcustomerfname.setText(map.get("fname").toString());
@@ -205,7 +178,11 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                         mcustomerfname.setText(map.get("phoneno").toString());
                     }
 
-                    getAssignedCustomerPickUpPoint();
+
+
+                    Toast.makeText(MechanicMapsActivity.this,"Ready For pickup point ",Toast.LENGTH_LONG).show();
+
+
 
                 }
 
@@ -253,11 +230,15 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
                     loc2.setLongitude(lastLocation.getLongitude());
 
                     float distance = loc1.distanceTo(loc2);
-                    if(distance<0.001){
+                    if(distance<100){
                         arrivedMechanic();
+                        Toast.makeText(MechanicMapsActivity.this,"Ready To Give Mechanic feedback ",Toast.LENGTH_LONG).show();
+
                     }
                     else{
                         pickUpMarker = mMap.addMarker(new MarkerOptions().position(userLatLang).title("User's Location"));
+                        Toast.makeText(MechanicMapsActivity.this,"Move closer"+distance,Toast.LENGTH_LONG).show();
+
 
                         getRouteToUser(userLatLang);
 
@@ -390,83 +371,8 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
 
     }
-    private Long getCurrentTimestamp() {
-        Long timestamp = System.currentTimeMillis()/1000;
-        return timestamp;
-    }
 
-//    private void changeTables(){
-//        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        DatabaseReference referenceAvailable = FirebaseDatabase.getInstance().getReference("mechanicavailable");
-//
-//        DatabaseReference referenceWorking = FirebaseDatabase.getInstance().getReference("mechanics_working");
-//        GeoFire geoFireWorking = new GeoFire(referenceWorking);
-//        GeoFire geoFireAvailable = new GeoFire(referenceAvailable);
-//
-//
-//
-//        switch (customerid){
-//            case "":
-//                geoFireWorking.removeLocation(userid, new GeoFire.CompletionListener() {
-//                    @Override
-//                    public void onComplete(String key, DatabaseError error) {
-//                        if (error != null) {
-//                            System.err.println("There was an error removing the location from GeoFire: " + error);
-//                        } else {
-//                            System.out.println("Location Removed on server successfully!");
-//                        }
-//
-//                    }
-//                });
-//
-//
-//
-//                geoFireAvailable.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
-//                        , new GeoFire.CompletionListener() {
-//                            @Override
-//                            public void onComplete(String key, DatabaseError error) {
-//                                if (error != null) {
-//                                    System.err.println("There was an error saving the location to GeoFire: " + error);
-//                                } else {
-//                                    System.out.println("Location saved on server successfully!");
-//                                }
-//
-//                            }
-//                        });
-//                break;
-//
-//            default:
-//
-//                geoFireAvailable.removeLocation(userid, new GeoFire.CompletionListener() {
-//                    @Override
-//                    public void onComplete(String key, DatabaseError error) {
-//                        if (error != null) {
-//                            System.err.println("There was an error removing the location from GeoFire: " + error);
-//                        } else {
-//                            System.out.println("Location Removed on server successfully!");
-//                        }
-//
-//                    }
-//                });
-//                geoFireWorking.setLocation(userid, new GeoLocation(lastLocation.getLatitude(), lastLocation.getLongitude())
-//                        , new GeoFire.CompletionListener() {
-//                            @Override
-//                            public void onComplete(String key, DatabaseError error) {
-//                                if (error != null) {
-//                                    System.err.println("There was an error saving the location to GeoFire: " + error);
-//                                } else {
-//                                    System.out.println("Location saved on server successfully!");
-//
-//                                }
-//
-//                            }
-//                        });
-//                break;
-//        }
-//
-//
-//
-//    }
+
 
     private void arrivedMechanic(){
 
@@ -475,9 +381,10 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("customer_request");
-        GeoFire geoFire = new GeoFire(ref);
-        geoFire.removeLocation(customerid, new GeoFire.CompletionListener() {
+
+        DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("mechanics_working");
+        GeoFire geoFire1 = new GeoFire(ref1);
+        geoFire1.removeLocation(userId, new GeoFire.CompletionListener() {
             @Override
             public void onComplete(String key, DatabaseError error) {
                 if (error != null) {
@@ -489,7 +396,7 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
             }
         });
 
-        customerid="";
+
 
 
         if(pickUpMarker != null){
@@ -504,8 +411,12 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
         mcustomernumber.setText("");
         mCustomerProfileImage.setImageResource(R.drawable.default_user_image);
         recordBreakdown();
-        finish();
-        startActivity(new Intent(MechanicMapsActivity.this,MechanicBreakdownFeedbackActivity.class));
+
+
+
+
+
+
 
     }
 
@@ -514,17 +425,36 @@ public class MechanicMapsActivity extends FragmentActivity implements OnMapReady
 
         DatabaseReference historyRef = FirebaseDatabase.getInstance().getReference().child("breakdowns");
         String requestId = historyRef.push().getKey();
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(currentTime);
 
 
-        HashMap map = new HashMap();
+
+        HashMap<String, Object> map = new HashMap<>();
         map.put("mechanic", userId);
         map.put("customer", customerid);
-        map.put("timestamp", getCurrentTimestamp());
+        map.put("time", currentTime);
+        map.put("date", formattedDate);
         map.put("userlocation_lat", userLatLang.latitude);
         map.put("userlocation_lng", userLatLang.longitude);
-
         assert requestId != null;
-        historyRef.child(requestId).updateChildren(map);
+
+
+        historyRef.child(requestId).updateChildren(map).addOnSuccessListener(suc-> {
+            Toast.makeText(MechanicMapsActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MechanicMapsActivity.this, MechanicBreakdownFeedbackActivity.class));
+
+        }).addOnFailureListener(er->{
+                    Toast.makeText(MechanicMapsActivity.this,"Something Went Wrong. Try Again"+er.getMessage(),Toast.LENGTH_LONG).show();
+                }
+
+        );
+        customerid="";
+
+
+
+
     }
 
     @Override
