@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserIncidentPageActivity2">
+    <TextView
+        android:id="@+id/text_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="@color/themeColor"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_incident_details"
+        android:layout_below="@id/text_intro"
+        android:text="Breakdown Details"
+        android:textColor="@color/darkTextColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </TextView>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/text_breakdown_images"-->
+<!--        android:layout_below= "@id/text_incident_details"-->
+<!--        android:text="1.  Upload images of the issue. Ensure One of the photos indicates the numberplate to enable our mechanics to find you easily."-->
+<!--        android:textColor="@color/darkTextColor"-->
+<!--        android:textAlignment="center"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginVertical="10dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginHorizontal="10dp">-->
+
+<!--    </TextView>-->
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/image_breakdown_images"-->
+<!--        android:text="Select Images to Upload"-->
+<!--        android:layout_below="@id/text_breakdown_images"-->
+<!--        android:background="@color/themeColor"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textAlignment="center"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginVertical="30dp"-->
+<!--        android:layout_marginHorizontal="40dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--    </Button>-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:id="@+id/images_breakdown_report"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/image_breakdown_images"-->
+    <!--        android:layout_marginVertical="10dp"-->
+    <!--        android:layout_marginHorizontal="20dp">-->
+
+    <!--    </androidx.recyclerview.widget.RecyclerView>-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/breakdownImage"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_below="@+id/image_breakdown_images"-->
+<!--        android:src="@drawable/ic_view_my_profile_icon"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:visibility="visible"/>-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_breakdown_description"
+        android:text="2.  Give a brief description of the issue."
+        android:textColor="@color/darkTextColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@id/text_incident_details"
+        >
+
+    </TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittext_description"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@id/text_breakdown_description"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="10dp"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="6"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:scrollbars="vertical">
+
+    </EditText>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_Find_Mechanic"
+        android:text="Find Mechanic"
+        android:textSize="18sp"
+        android:layout_below="@id/edittext_description"
+        android:background="@color/themeColor"
+        android:textColor="@color/whiteTextColor"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginVertical="30dp"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+    </Button>
+
+
+
+
+
+</RelativeLayout>

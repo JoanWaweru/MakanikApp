@@ -121,7 +121,6 @@
         app:layout_constraintTop_toBottomOf="@id/profile_displayingphonenumber"
         app:layout_constraintLeft_toRightOf="@id/editingProfile"
         android:layout_marginTop="30dp"
-        android:onClick="Back"
         android:layout_marginLeft="50dp">
 
     </Button>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RateMechanicActivity">
+    <TextView
+        android:id="@+id/text_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="@color/primaryTextColor"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/leave_a_comment"
+        android:text="Leave a comment"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_intro"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/primaryTextColor">
+
+    </TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/leave_a_comment_edittext"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/leave_a_comment"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp">
+
+    </EditText>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/give_a_rating"
+        android:text="Give a Rating"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/leave_a_comment_edittext"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/primaryTextColor">
+
+    </TextView>
+
+
+
+
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="60dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:foregroundGravity="center"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/give_a_rating"
+        >
+
+    </RatingBar>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_submit_rating"
+        android:text="Submit"
+        android:textColor="@color/whiteTextColor"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:background="@color/themeColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rating_bar"
+        android:layout_marginTop="30dp"
+        android:onClick="submitRating"
+        android:layout_marginHorizontal="30dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

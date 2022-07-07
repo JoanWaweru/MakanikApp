@@ -46,20 +46,20 @@
                 android:layout_marginTop="35dp"
                 android:layout_centerHorizontal="true">
 
-<!--                <TextView-->
-<!--                    style="@style/viewParent.headerText.NoMode"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:text="We got \nyour \nBack😉"-->
-<!--                    android:layout_marginLeft="60dp"/>-->
+                <TextView
+                    style="@style/viewParent.headerText.NoMode"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="We got \nyour \nBack!"
+                    android:layout_marginLeft="60dp"/>
 
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="140dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="150dp"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginRight="27dp"
 
                     android:src="@drawable/mechanic_login" />
 
@@ -135,6 +135,21 @@
                 android:onClick="loginClick">
 
             </Button>
+
+<!--            <Button-->
+
+<!--                android:id="@+id/button_login2"-->
+<!--                android:text="Log In As Mechanic"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="30sp"-->
+<!--                android:textAlignment="center"-->
+<!--                style="@style/parent"-->
+<!--                android:background="@color/whiteTextColor"-->
+<!--                android:textColor="@color/themeColor"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:onClick="loginClick"/>-->
+
             <TextView
                 style="@style/parent"
                 android:layout_marginTop="30dp"

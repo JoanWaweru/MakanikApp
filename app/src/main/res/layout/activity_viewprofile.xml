@@ -147,11 +147,12 @@
         android:layout_marginHorizontal="30dp">
 
     </TextView>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editProfile"
-        android:text="@string/edit_profile"
+        android:id="@+id/button_edit_profile"
+        android:text="Edit Profile"
         android:textColor="@color/themeColor"
         android:textStyle="bold"
         android:textSize="25sp"
@@ -161,10 +162,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_displayphonenumber"
         android:layout_marginTop="30dp"
-        android:onClick="EditProfile"
-        android:layout_marginHorizontal="30dp">
+        android:onClick="updateProfile"
+        android:layout_marginHorizontal="30dp"/>
 
-    </Button>
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/editProfile"-->
+<!--        android:text="@string/edit_profile"-->
+<!--        android:textColor="@color/themeColor"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="25sp"-->
+<!--        android:background="@color/whiteTextColor"-->
+<!--        android:textAlignment="center"-->
+<!--        android:gravity="center"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/button_edit_profile"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:onClick="updateProfile"-->
+<!--        android:layout_marginHorizontal="30dp">-->
+
+<!--    </Button>-->
 
 
 

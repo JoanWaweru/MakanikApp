@@ -21,19 +21,22 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MechanicLoginActivity extends AppCompatActivity {
+//import coding.insight.cleanuiloginregister.R;
+
+public class MechanicLoginActivity extends AppCompatActivity{
 
     TextView email,password,forgotpassword;
     Button login;
-    CheckBox rememberMe;
+    //CheckBox rememberMe;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //for changing status bar icon colors
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
         setContentView(R.layout.activity_mechanic_login);
@@ -43,8 +46,37 @@ public class MechanicLoginActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextloginPassword_mechanic);
         login = findViewById(R.id.button_login_mechanic);
         forgotpassword = findViewById(R.id.button_forgotpassword_mechanic);
-        rememberMe = findViewById(R.id.rememberMe);
+        //rememberMe = findViewById(R.id.rememberMe);
+
+//            //get an instance of firebase authentication
+//            mAuth = FirebaseAuth.getInstance();
+//            //get currently logged in user
+//            FirebaseUser currentUser = mAuth.getCurrentUser();
+//            if (currentUser == null) {
+//                // if user is not logged in refer him/he ro the register activity
+//                Intent loginIntent = new Intent(MainActivity.this, RegisterActivity.class);
+//                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(loginIntent);
+//            }
+//        }
+//    @Override
+//    protected void onStart() {
+//        //
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        //check to see if the user is logged in
+//        if (currentUser != null) {
+//            //if user is logged in populate the Ui With card views on the adapter
+//            updateUI(currentUser);
+//            // Listen to the events
+//            adapter.startListening();
+
+//            mAuth.getCurrentUser();
+//        }
+//    }
     }
+
+
     public void onLoginClick1(View View){
         startActivity(new Intent(this,MechanicRegisterActivity.class));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -52,20 +84,20 @@ public class MechanicLoginActivity extends AppCompatActivity {
     }
 
 
-    public void loginClick1(View view) {
+    public void onLoginClick2(View view) {
         switch (view.getId()){
             case R.id.button_login_mechanic:
                 rootnode = FirebaseDatabase.getInstance();
                 reference = rootnode.getReference("mechanic");
                 mAuth = FirebaseAuth.getInstance();
-                userLogIn1();
+                mechanicLogIn();
                 break;
 
         }
 
     }
 
-    private void userLogIn1() {
+    private void mechanicLogIn() {
         String userEnteredEmail = email.getText().toString().trim();
         String userEnteredPassword = password.getText().toString().trim();
 
@@ -86,9 +118,9 @@ public class MechanicLoginActivity extends AppCompatActivity {
             return;
         }
 
-        if(rememberMe.isChecked()){
-
-        }
+//        if(rememberMe.isChecked()){
+//
+//        }
 
 
         mAuth.signInWithEmailAndPassword(userEnteredEmail,userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -101,7 +133,7 @@ public class MechanicLoginActivity extends AppCompatActivity {
                     if (user.isEmailVerified()){
                         //redirect to ViewProfile Activity
 
-                        startActivity(new Intent(MechanicLoginActivity.this, MechanicMapsActivity.class));
+                        startActivity(new Intent(MechanicLoginActivity.this, MechanicLandingActivity.class));
 
                     }
                     else {
@@ -135,15 +167,12 @@ public class MechanicLoginActivity extends AppCompatActivity {
 
 
     public void logInAsUser(View view) {
-        switch (view.getId()) {
+        switch (view.getId()){
             case R.id.user_login_textview:
-
-
                 startActivity(new Intent(MechanicLoginActivity.this,LoginActivity.class));
 
                 break;
         }
     }
 }
-
 

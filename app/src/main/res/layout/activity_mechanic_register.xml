@@ -46,10 +46,9 @@
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
                     android:text="Register to \nWork With\n Us!"
-                    android:textColor="@color/whiteTextColor"
-                    android:layout_marginLeft="60dp"/>
+                    android:textColor="@color/whiteTextColor" />
 
                 <ImageView
                     android:layout_width="120dp"
@@ -140,18 +139,18 @@
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputMechanicCertNumber"
-                        style="@style/parent"
-                        android:layout_marginTop="@dimen/loginViewsMargin">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/textInputMechanicCertNumber"-->
+<!--                        style="@style/parent"-->
+<!--                        android:layout_marginTop="@dimen/loginViewsMargin">-->
 
-                        <EditText
-                            android:id="@+id/editTextMechanicCertNumber"
-                            style="@style/modifiedEditText"
-                            android:hint="@string/mechanic_registration_number"
-                            android:inputType="text"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <EditText-->
+<!--                            android:id="@+id/editTextMechanicCertNumber"-->
+<!--                            style="@style/modifiedEditText"-->
+<!--                            android:hint="@string/mechanic_registration_number"-->
+<!--                            android:inputType="text"-->
+<!--                            android:maxLines="1" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <!--                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
                     <!--                        android:id="@+id/cirRegisterButton"-->

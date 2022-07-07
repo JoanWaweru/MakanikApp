@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +29,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
     FirebaseAuth mAuth;
     FirebaseUser user;
 
-    public CardView callMechanic,viewProfile,signAsMechanic,logout;
+    public CardView callMechanic,viewProfile,settings,logout;
     private TextView welcome;
 
 
@@ -39,15 +40,15 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
 
         callMechanic = findViewById(R.id.callMechanicCard);
         viewProfile = findViewById(R.id.viewProfileCard);
-        signAsMechanic = findViewById(R.id.signAsMechanicCard);
+        settings = findViewById(R.id.settingsCard);
         logout = findViewById(R.id.logoutCard);
 
         callMechanic.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
-        signAsMechanic.setOnClickListener(this);
+        settings.setOnClickListener(this);
         logout.setOnClickListener(this);
 
-        editProfile = findViewById(R.id.editProfile);
+        //editProfile = findViewById(R.id.editProfile);
 
 
 
@@ -97,8 +98,8 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
                 startActivity(i);
                 break;
 
-            case R.id.signAsMechanicCard:
-                i = new Intent(this,MechanicRegisterActivity.class);
+            case R.id.settingsCard:
+                i = new Intent(this,SettingsActivity.class);
                 startActivity(i);
                 break;
 

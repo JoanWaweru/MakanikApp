@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/register_bk_color"
+    android:focusableInTouchMode="true"
+    tools:context=".EditingMechanicProfileActivity">
+
+
+
+    <TextView
+        android:id="@+id/text_mechanic_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="@color/whiteTextColor"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_mechanic_email"
+        android:text="@string/login_email_hint"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_mechanic_intro"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/whiteTextColor">
+
+    </TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/profile_mechanic_displayingemail"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_email"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp">
+
+    </EditText>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_mechanic_phonenumber"
+        android:text="@string/phone_number"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_displayingemail"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/whiteTextColor">
+
+    </TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/profile_mechanic_displayingphonenumber"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_phonenumber"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp">
+
+    </EditText>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mechanic_editingProfile"
+        android:text="Edit Profile"
+        android:textColor="@color/themeColor"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:background="@color/whiteTextColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_displayingphonenumber"
+        android:layout_marginTop="30dp"
+        android:onClick="MechanicEditingProfile"
+        android:layout_marginHorizontal="30dp">
+
+    </Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mechanic_back_viewingprofile"
+        android:text="Back"
+        android:textColor="@color/themeColor"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:background="@color/whiteTextColor"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/profile_mechanic_displayingphonenumber"
+        app:layout_constraintLeft_toRightOf="@id/mechanic_editingProfile"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp">
+
+    </Button>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -89,7 +89,7 @@ public class MechanicRegisterActivity extends AppCompatActivity {
         String emailaddress = email.getText().toString();
         String phoneno = phone_number.getText().toString();
         String userpassword = password.getText().toString();
-        String status = "offline";
+
         String approved = "no";
         mAuth = FirebaseAuth.getInstance();
 
@@ -141,7 +141,7 @@ public class MechanicRegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()){
-                            MechanicHelperClass helperClass = new MechanicHelperClass(fname,lname,emailaddress,phoneno,userpassword,status,approved);
+                            MechanicHelperClass helperClass = new MechanicHelperClass(fname,lname,emailaddress,phoneno,userpassword,approved);
                             FirebaseDatabase.getInstance().getReference("mechanic")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(helperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
